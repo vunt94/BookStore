@@ -1,0 +1,98 @@
+﻿<Products>
+  <Product ID="1">
+    <name>Code Dao Ky Su</name>
+    <amount>15</amount>
+    <price>1.500000000000000e+001</price>
+    <image>book1.jpg</image>
+    <description>It is one of the most popular indoor plants for its good germination ability, grows rapidly even under low light conditions.</description>
+    <categoryId>1</categoryId>
+  </Product>
+  <Product ID="2">
+    <name>Conan</name>
+    <amount>5</amount>
+    <price>2.500000000000000e+001</price>
+    <image>book2.jpg</image>
+    <description>When it comes to the top types of air purifiers, we cannot help but mention Tigers Tongue - the "machine" that filters the air from nature. In particular, this plant also has very good vitality, even with low light conditions or direct sunlight, and is resistant to drought up to several months. In Western countries, Tiger Tongue is often placed in bedrooms, because with reverse photosynthetic properties, it will release oxygen at night, helping to sleep deeply and fresh.</description>
+    <categoryId>1</categoryId>
+  </Product>
+  <Product ID="3">
+    <name>Doremon</name>
+    <amount>6</amount>
+    <price>6.500000000000000e+001</price>
+    <image>book3.jpg</image>
+    <description>This is a succulent plant of the genus Aloe (Aloe Vera). In particular, this is a crossbred line, so their size will be small in a certain range, then they will lay more seedlings next to them, you can also separate and plant separately when the seedlings are big enough.</description>
+    <categoryId>1</categoryId>
+  </Product>
+  <Product ID="4">
+    <name>Dac Nhan Tam</name>
+    <amount>8</amount>
+    <price>5.000000000000000e+001</price>
+    <image>book4.jpg</image>
+    <description>It is one of the most popular indoor plants for its good germination ability, grows rapidly even under low light conditions. </description>
+    <categoryId>1</categoryId>
+  </Product>
+  <Product ID="5">
+    <name>Giao Duc Cong Dan</name>
+    <amount>10</amount>
+    <price>5.500000000000000e+001</price>
+    <image>book5.jpg</image>
+    <description>It can be said that Fittonia is a bonsai for beginners. Most people, when starting to take care of trees, choose plants that are easy to take care of, but still have to be beautiful and eye-catching. Therefore, Fittonia is always the first choice whenever you want to care or give someone a pot without too much light.</description>
+    <categoryId>1</categoryId>
+  </Product>
+  <Product ID="6">
+    <name>MSI</name>
+    <amount>20</amount>
+    <price>7.000000000000000e+001</price>
+    <image>MSI.jpg</image>
+    <description>When it comes to the top types of air purifiers, we cannot help but mention Tigers Tongue - the "machine" that filters the air from nature. In particular, this plant also has very good vitality, even with low light conditions or direct sunlight, and is resistant to drought up to several months. In Western countries, Tiger Tongue is often placed in bedrooms, because with reverse photosynthetic properties, it will release oxygen at night, helping to sleep deeply and fresh.</description>
+    <categoryId>4</categoryId>
+  </Product>
+  <Product ID="7">
+    <name>Galaxy Note 20 Ultra</name>
+    <amount>15</amount>
+    <price>9.500000000000000e+001</price>
+    <image>Galaxy Note 20 Ultra.jpg</image>
+    <description>As you probably know, Cactus helps in eliminating radiation from electronic devices in the office such as computers, phones, printers, televisions ... However, not all types of cacti can be placed in the environment. office. Choose those with many spines, small spines, dark green and hard body, typically Nipple Cactus (Birthday Cake Cactus). This line is suitable for those who do not have time to water the plants, because the cactus drought tolerance is very good, can be up to several months.</description>
+    <categoryId>2</categoryId>
+  </Product>
+  <Product ID="8">
+    <name>Xiaomi</name>
+    <amount>30</amount>
+    <price>4.500000000000000e+001</price>
+    <image>Xiaomi.jpg</image>
+    <description>It is one of the most popular succulent plants when it comes to the Stone Lotus / Cactus. The advantage of this plant is that it is well adapted to the Vietnamese climate, does not need too much sunshine to grow, can live well with shady conditions and especially does not need too much water.</description>
+    <categoryId>2</categoryId>
+  </Product>
+  <Product ID="9">
+    <name>Samsung</name>
+    <amount>25</amount>
+    <price>7.500000000000000e+001</price>
+    <image>Samsung.jpg</image>
+    <description>It is one of the most popular succulent plants when it comes to the Stone Lotus / Cactus. The advantage of this plant is that it is well adapted to the Vietnamese climate, does not need too much sunshine to grow, can live well with shady conditions and especially does not need too much water.</description>
+    <categoryId>2</categoryId>
+  </Product>
+  <Product ID="10">
+    <name>Champion</name>
+    <amount>10</amount>
+    <price>5.000000000000000e+001</price>
+    <image>Champion.jpg</image>
+    <description>Terracotta - Terracotta is the best potted material for growing plants. With good water absorption makes it easier to water plants indoors, minimizing root rot for plants.</description>
+    <categoryId>3</categoryId>
+  </Product>
+  <Product ID="11">
+    <name>Rookie</name>
+    <amount>20</amount>
+    <price>4.000000000000000e+001</price>
+    <image>Rookie.jpg</image>
+    <description>Terracotta - Terracotta is the best potted material for growing plants. With good water absorption makes it easier to water plants indoors, minimizing root rot for plants</description>
+    <categoryId>3</categoryId>
+  </Product>
+  <Product ID="12">
+    <name>Nike</name>
+    <amount>15</amount>
+    <price>1.450000000000000e+002</price>
+    <image>Nike.png</image>
+    <description>Pot products are only available at NOTH Garden, with thick glass material, more difficult to break. Especially, the pot has a drainage hole at the bottom of the pot, so it can be planted straight into the pot without worrying about waterlogging.</description>
+    <categoryId>3</categoryId>
+  </Product>
+</Products>
