@@ -1,22 +1,22 @@
 ﻿<Products>
   <Product ID="1">
-    <name>Code Dao Ky Su</name>
+    <name>Pride and Prejudice</name>
     <amount>15</amount>
-    <price>1.500000000000000e+001</price>
-    <image>book1.jpg</image>
+    <price>50</price>
+    <image>PrideAndPrejudice.jpg</image>
     <description>It is one of the most popular indoor plants for its good germination ability, grows rapidly even under low light conditions.</description>
     <categoryId>1</categoryId>
   </Product>
   <Product ID="2">
-    <name>Conan</name>
+    <name>The Lord of the Rings</name>
     <amount>5</amount>
-    <price>2.500000000000000e+001</price>
-    <image>book2.jpg</image>
+    <price>60</price>
+    <image>TheLordOfTheRings.jpg</image>
     <description>When it comes to the top types of air purifiers, we cannot help but mention Tigers Tongue - the "machine" that filters the air from nature. In particular, this plant also has very good vitality, even with low light conditions or direct sunlight, and is resistant to drought up to several months. In Western countries, Tiger Tongue is often placed in bedrooms, because with reverse photosynthetic properties, it will release oxygen at night, helping to sleep deeply and fresh.</description>
     <categoryId>1</categoryId>
   </Product>
   <Product ID="3">
-    <name>Doremon</name>
+    <name>To Kill A Mockingbird</name>
     <amount>6</amount>
     <price>6.500000000000000e+001</price>
     <image>book3.jpg</image>

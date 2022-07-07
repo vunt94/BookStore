@@ -1,0 +1,8 @@
+﻿<Categories>
+  <Category ID="1">
+    <cateName>Story</cateName>
+  </Category>
+  <Category ID="2">
+    <cateName>Novel</cateName>
+  </Category>
+</Categories>
