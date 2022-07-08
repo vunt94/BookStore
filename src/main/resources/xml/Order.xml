@@ -77,7 +77,7 @@
     <Order ID="14">
         <accountID>5</accountID>
         <orderDate>2022-02-08</orderDate>
-        <totalPrice>125</totalPrice>
+        <totalPrice>150</totalPrice>
         <note>Just becarefull</note>
     </Order>
 </Orders>
