@@ -30,19 +30,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Shipments }
+     * Create an instance of {@link OrderDetails }
      * 
      */
-    public Shipments createShipments() {
-        return new Shipments();
+    public OrderDetails createOrderDetails() {
+        return new OrderDetails();
     }
 
     /**
-     * Create an instance of {@link Shipments.Shipment }
+     * Create an instance of {@link OrderDetails.OrderDetail }
      * 
      */
-    public Shipments.Shipment createShipmentsShipment() {
-        return new Shipments.Shipment();
+    public OrderDetails.OrderDetail createOrderDetailsOrderDetail() {
+        return new OrderDetails.OrderDetail();
     }
 
 }
