@@ -5,4 +5,7 @@
   <Category ID="2">
     <cateName>Novel</cateName>
   </Category>
+  <Category ID="3">
+    <cateName>Children's books</cateName>
+  </Category>
 </Categories>
