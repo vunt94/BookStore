@@ -1,0 +1,62 @@
+<Shipments>
+    <Shipment ID="1">
+        <orderId>3</orderId>
+        <shippingAddress>Hoa Lac, Thach That, Ha Noi</shippingAddress>
+        <shippingCost>2.5</shippingCost>
+        <shippingType>1</shippingType>
+    </Shipment>
+    <Shipment ID="2">
+        <orderId>5</orderId>
+        <shippingAddress>21, HCM Street, Ninh Giang, Hai Duong</shippingAddress>
+        <shippingCost>5</shippingCost>
+        <shippingType>0</shippingType>
+    </Shipment>
+    <Shipment ID="3">
+        <orderId>6</orderId>
+        <shippingAddress>34/56, Nguyen Khuyen Road, Lang, Ha Noi</shippingAddress>
+        <shippingCost>12.5</shippingCost>
+        <shippingType>1</shippingType>
+    </Shipment>
+    <Shipment ID="4">
+        <orderId>4</orderId>
+        <shippingAddress>22A/34/67, Nguyen Hoang Street, My Dinh, Ha Noi</shippingAddress>
+        <shippingCost>1.2</shippingCost>
+        <shippingType>0</shippingType>
+    </Shipment>
+    <Shipment ID="5">
+        <orderId>2</orderId>
+        <shippingAddress>26, Duong Lang, Ha Noi </shippingAddress>
+        <shippingCost>3.6</shippingCost>
+        <shippingType>1</shippingType>
+    </Shipment>
+    <Shipment ID="6">
+        <orderId>1</orderId>
+        <shippingAddress>45, Cau Khanh Van, Da Nang, Viet Nam</shippingAddress>
+        <shippingCost>25</shippingCost>
+        <shippingType>1</shippingType>
+    </Shipment>
+    <Shipment ID="7">
+        <orderId>8</orderId>
+        <shippingAddress>11 Ho Cau Dien, Que Tho</shippingAddress>
+        <shippingCost>4</shippingCost>
+        <shippingType>1</shippingType>
+    </Shipment>
+    <Shipment ID="8">
+        <orderId>7</orderId>
+        <shippingAddress>02/33, Truong Giai Street, Khanh Hoa</shippingAddress>
+        <shippingCost>9.5</shippingCost>
+        <shippingType>0</shippingType>
+    </Shipment>
+    <Shipment ID="9">
+        <orderId>10</orderId>
+        <shippingAddress>03 Nguyen Hung Street, Ha Noi</shippingAddress>
+        <shippingCost>21</shippingCost>
+        <shippingType>0</shippingType>
+    </Shipment>
+    <Shipment ID="10">
+        <orderId>9</orderId>
+        <shippingAddress>47/35 Hoa An, Vu Giai, Ho Chi Minh</shippingAddress>
+        <shippingCost>6.</shippingCost>
+        <shippingType>0</shippingType>
+    </Shipment>
+</Shipments>
