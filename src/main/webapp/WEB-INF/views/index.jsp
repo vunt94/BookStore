@@ -446,7 +446,7 @@
                         <div class="block2-txt-child2 flex-r p-t-3">
                             <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
                                 <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-                                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+                                <img id="test" class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
                             </a>
                         </div>
                     </div>
@@ -1171,6 +1171,23 @@
 </script>
 <!--===============================================================================================-->
 <script src="js/main.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#test").click(function () {
+        $.ajax({
+            type: "POST",
+            data: {isAdd: 'true'},
+            url: '${pageContext.request.contextPath}/addToWishlist',
+            success: function (data) {
+                console.log("Success!")
+            },
+            failure: function (errMsg) {
+                console.log(errMsg.toString())
+            }
+        });
+    });
+</script>
 
 </body>
 
