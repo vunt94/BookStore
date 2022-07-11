@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <header>
     <!-- Header desktop -->
     <div class="container-menu-desktop">
@@ -74,8 +74,8 @@
                         <i class="zmdi zmdi-search"></i>
                     </div>
 
-                    <a href="shoping-cart.html" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="2">
-                        <i class="zmdi zmdi-shopping-cart"></i>
+                    <a href="${pageContext.request.contextPath}/shopingCart" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="2">
+                        <i id="shopping-cart" class="zmdi zmdi-shopping-cart"></i>
                     </a>
 
                     <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
@@ -193,4 +193,5 @@
             </form>
         </div>
     </div>
+
 </header>
