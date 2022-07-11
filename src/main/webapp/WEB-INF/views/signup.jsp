@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="text-center p-t-46 p-b-20">
-                    <a href="login" class="txt1"> Already have an account ? </a>
+                    <a href="signin" class="txt1"> Already have an account ? </a>
                 </div>
 
 
