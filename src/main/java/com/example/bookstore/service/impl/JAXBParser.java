@@ -2,6 +2,7 @@ package com.example.bookstore.service.impl;
 
 import com.example.bookstore.Constant;
 import com.example.bookstore.entity.Favorites;
+import com.example.bookstore.entity.Products;
 
 import javax.xml.bind.*;
 import java.io.File;
@@ -66,6 +67,27 @@ public class JAXBParser {
 
     }
 
+    public Products getListProductFromXML() {
 
+        try {
+            JAXBContext context = JAXBContext.newInstance(Favorites.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Products products =
+                    (Products) unmarshaller.unmarshal(new File(constant.FavoriteXMLPath));
+            return products;
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void writeProductToXML(Products products) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Products.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.marshal(products, new File(constant.ProductXMLPath));
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
