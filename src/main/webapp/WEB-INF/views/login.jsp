@@ -15,9 +15,8 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form">
+            <form action="login" method="post" class="login100-form validate-form">
                 <span class="login100-form-title p-b-43"> Login to continue </span>
-
                 <div
                         class="wrap-input100 validate-input"
                         data-validate="Phone number is required"
@@ -38,7 +37,7 @@
                     <input
                             class="input100"
                             type="password"
-                            name="pass"
+                            name="password"
                             placeholder="Password"
                     />
                     <span class="focus-input100"></span>
@@ -81,7 +80,7 @@
                 </div>
 
                 <div class="text-center p-t-46 p-b-20">
-                    <a href="register" class="txt1"> Don't have an account ?  </a>
+                    <a href="register" class="txt1"> Don't have an account ? </a>
                 </div>
 
 
