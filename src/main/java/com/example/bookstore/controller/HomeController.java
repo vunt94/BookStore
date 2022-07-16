@@ -34,15 +34,8 @@ public class HomeController {
     private FavoriteService favoriteService;
 
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
-    @GetMapping("/")
-    public String index(HttpSession session, HttpServletRequest request) {
-        session.setAttribute("accId", 4);
-        int accId = (int) session.getAttribute("accId");
-        List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
-        request.setAttribute("size", productService.getElementOfWishlistByPid(listPId).size());
-        return INDEX_URL;
     @Autowired
     HttpServletRequest request;
 
@@ -50,13 +43,25 @@ public class HomeController {
     HttpServletResponse response;
 
     @Autowired
-    ProductServiceImpl productService;
-
-    @Autowired
     CategoryServiceImpl categoryService;
 
+    @Autowired
+    HttpSession session;
+
+//    @GetMapping("/")
+//    public String index(HttpSession session, HttpServletRequest request) {
+//        session.setAttribute("accId", 4);
+//        int accId = (int) session.getAttribute("accId");
+//        List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
+//        request.setAttribute("size", productService.getElementOfWishlistByPid(listPId).size());
+//        return INDEX_URL;
+//    }
+
     @GetMapping("/")
-    public String index(@RequestParam(name = "cateId",required = false) String cateId, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+    public String index(@RequestParam(name = "cateId",required = false) String cateId,
+                        @RequestParam("page") Optional<Integer> page,
+                        @RequestParam("size") Optional<Integer> size) {
+
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(4);
         List<Products.Product> lstProduct = null;
