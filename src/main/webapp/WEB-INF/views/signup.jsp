@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>Sign Up</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--===============================================================================================-->
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="text-center p-t-46 p-b-20">
-                    <a href="login" class="txt1"> Already have an account ? </a>
+                    <a href="signin" class="txt1"> Already have an account ? </a>
                 </div>
 
 
