@@ -1,7 +1,9 @@
 package com.example.bookstore.service.impl;
 
 import com.example.bookstore.Constant;
+import com.example.bookstore.entity.Accounts;
 import com.example.bookstore.entity.Favorites;
+import com.example.bookstore.entity.Products;
 
 import javax.xml.bind.*;
 import java.io.File;
@@ -10,6 +12,7 @@ import java.io.File;
 public class JAXBParser {
 
     private Constant constant = new Constant();
+
     public void writeProductToFavoriteXML(Favorites.Favorite favorite) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(Favorites.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -28,7 +31,7 @@ public class JAXBParser {
                     (Favorites) unmarshaller.unmarshal(new File("src/main/resources/xml/FavoritesTest.xml"));
             for (int i = 0; i < favoritesCurrently.getFavorite().size(); i++) {
                 int pid = (int) favoritesCurrently.getFavorite().get(i).getProductId();
-                int aid = (int)favoritesCurrently.getFavorite().get(i).getAccountId();
+                int aid = (int) favoritesCurrently.getFavorite().get(i).getAccountId();
                 if (aid == accId && productId == pid) {
                     favoritesCurrently.getFavorite().remove(i);
                     break;
@@ -66,6 +69,32 @@ public class JAXBParser {
 
     }
 
+    public Accounts readListAccountFromXML() {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Accounts.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Accounts accounts =
+                    (Accounts) unmarshaller.unmarshal(new File(constant.AccountXMLPath));
+            return accounts;
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void writeAccountToXML(Accounts.Account account) {
+        try {
+        JAXBContext context = JAXBContext.newInstance(Accounts.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        Accounts accountCurrentList =
+                (Accounts) unmarshaller.unmarshal(new File(constant.AccountXMLPath));
+        accountCurrentList.getAccount().add(account);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.marshal(accountCurrentList, new File(constant.AccountXMLPath));
+
+        } catch (JAXBException e) {
+            throw  new RuntimeException(e);
+        }
+    }
 
 
 }

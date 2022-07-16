@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>Sign in</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--===============================================================================================-->
@@ -15,9 +17,8 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form">
+            <form action="signin" method="post" class="login100-form validate-form">
                 <span class="login100-form-title p-b-43"> Login to continue </span>
-
                 <div
                         class="wrap-input100 validate-input"
                         data-validate="Phone number is required"
@@ -38,11 +39,19 @@
                     <input
                             class="input100"
                             type="password"
-                            name="pass"
+                            name="password"
                             placeholder="Password"
                     />
                     <span class="focus-input100"></span>
                 </div>
+
+                <c:choose>
+                    <c:when test="${isLoginFail == 1}">
+                        <div class="alert-error">
+                            <p class="alert__content"> Check your phone number and password again!</p>
+                        </div>
+                    </c:when>
+                </c:choose>
 
                 <div class="flex-sb-m w-full p-t-3 p-b-32">
                     <div class="contact100-form-checkbox">
@@ -50,7 +59,7 @@
                                 class="input-checkbox100"
                                 id="ckb1"
                                 type="checkbox"
-                                name="remember-me"
+                                name="rememberMe"
                         />
                         <label class="label-checkbox100" for="ckb1">
                             Remember me
@@ -81,7 +90,7 @@
                 </div>
 
                 <div class="text-center p-t-46 p-b-20">
-                    <a href="signup" class="txt1"> Don't have an account ?  </a>
+                    <a href="signup" class="txt1"> Don't have an account ? </a>
                 </div>
 
 
