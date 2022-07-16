@@ -62,5 +62,16 @@ public class ProductServiceImpl implements ProductService {
         return productPage;
     }
 
+    @Override
+    public List<Products.Product> getElementOfWishlistByPid(List<Short> listProductId) {
+        List<Products.Product> listProductInWishlist = new ArrayList<>();
+        List<Products.Product> listAllProduct = getAllProduct();
+        for (Products.Product product : listAllProduct) {
+            if ( listProductId.contains(product.getID())) {
+                listProductInWishlist.add(product);
+            }
+        }
+        return listProductInWishlist;
+    }
 
 }

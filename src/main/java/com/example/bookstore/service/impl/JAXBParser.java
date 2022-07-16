@@ -130,5 +130,18 @@ public class JAXBParser {
         }
     }
 
+    public Products getListProductFromXML() {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Products.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Products products =
+                    (Products) unmarshaller.unmarshal(new File(constant.ProductXMLPath));
+            return products;
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 }
