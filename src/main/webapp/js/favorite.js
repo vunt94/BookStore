@@ -20,8 +20,8 @@ GET: $(document).ready(
                         // $('.js-panel-cart').addClass('show-header-cart');
                         $.each(result.data,
                             function (i, product) {
-                                document.getElementById("wishlist").innerHTML +=
-                                    `<div class="header-cart-content flex-w js-pscroll">
+                                document.getElementById("header-cart__content").innerHTML +=
+                                    `<div class="header-cart-content flex-w disable-scroll">
                                     <ul class="header-cart-wrapitem w-full">
                                     <li class="header-cart-item flex-w flex-t m-b-12">
                                     

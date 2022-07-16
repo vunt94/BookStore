@@ -3165,6 +3165,14 @@ input.num-product::-webkit-inner-spin-button {
   opacity: 1;
 }
 
+.disable-scroll{
+  overflow-y: hidden;
+}
+
+.header-cart--scroll {
+  overflow-y: scroll;
+  width: 100%;
+}
 
 
 

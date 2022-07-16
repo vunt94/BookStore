@@ -207,6 +207,9 @@
 <%--                    <i class="zmdi zmdi-close"></i>--%>
 <%--                </div>--%>
             </div>
+            <div id="header-cart__content" class="header-cart--scroll">
+
+            </div>
 
 <%--            <div class="header-cart-content flex-w js-pscroll">--%>
 <%--                <ul class="header-cart-wrapitem w-full">--%>
