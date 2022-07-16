@@ -194,7 +194,7 @@
                 <div class="block1 wrap-pic-w">
                     <img src="images/banner-01.jpg" alt="IMG-BANNER">
 
-                    <a href="/shop?cateId=${item.ID}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                    <a href="/?cateId=${item.ID}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                         <div class="block1-txt-child1 flex-col-l">
                                 <span class="block1-name ltext-102 trans-04 p-b-8">
 									${item.cateName}
@@ -399,7 +399,7 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <c:forEach items="${pageNumbers}" var="pageNumber">
-                    <li class="page-item ${pageNumber == lstProduct.number + 1 ? "active" : ""}"><a class="page-link" href="/shop?cateId=${categoryID == null ? 0 : categoryID}&page=${pageNumber}&size=${lstProduct.size}">${pageNumber}</a></li>
+                    <li class="page-item ${pageNumber == lstProduct.number + 1 ? "active" : ""}"><a class="page-link" href="/?cateId=${categoryID == null ? 0 : categoryID}&page=${pageNumber}&size=${lstProduct.size}">${pageNumber}</a></li>
                 </c:forEach>
             </ul>
         </nav>
