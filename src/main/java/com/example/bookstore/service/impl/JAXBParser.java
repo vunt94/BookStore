@@ -6,6 +6,9 @@ import com.example.bookstore.entity.Products;
 
 import javax.xml.bind.*;
 import java.io.File;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class JAXBParser {
@@ -67,24 +70,23 @@ public class JAXBParser {
 
     }
 
-    public Products getListProductFromXML() {
-
+    public List<Products.Product> getProductsByJAXB() {
         try {
-            JAXBContext context = JAXBContext.newInstance(Favorites.class);
+            JAXBContext context = JAXBContext.newInstance(Products.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            Products products =
-                    (Products) unmarshaller.unmarshal(new File(constant.FavoriteXMLPath));
-            return products;
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
+            Products productList = (Products) unmarshaller.unmarshal(new File("src/main/resources/xml/Products.xml"));
+            return productList.getProduct();
+        } catch (JAXBException ex) {
+            Logger.getLogger(JAXBParser.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 
     public void writeProductToXML(Products products) {
         try {
             JAXBContext context = JAXBContext.newInstance(Products.class);
             Marshaller marshaller = context.createMarshaller();
-            marshaller.marshal(products, new File(constant.ProductXMLPath));
+            marshaller.marshal(products, new File("src/main/resources/xml/Products.xml"));
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

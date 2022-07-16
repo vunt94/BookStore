@@ -59,6 +59,13 @@ public class Products {
     @XmlElement(name = "Product", required = true)
     protected List<Products.Product> product;
 
+    public Products() {
+    }
+
+    public Products(List<Product> product) {
+        this.product = product;
+    }
+
     /**
      * Gets the value of the product property.
      * 
@@ -127,6 +134,7 @@ public class Products {
         "author",
         "publisher"
     })
+    @XmlRootElement(name = "Product")
     public static class Product {
 
         @XmlElement(required = true)

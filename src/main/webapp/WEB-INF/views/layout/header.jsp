@@ -15,6 +15,10 @@
                         Help & FAQs
                     </a>
 
+                    <a href="/addProduct" class="flex-c-m trans-04 p-lr-25">
+                        Create Product
+                    </a>
+
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         My Account
                     </a>
