@@ -122,7 +122,7 @@ public class Accounts {
         @XmlElement(required = true)
         protected String password;
         @XmlSchemaType(name = "unsignedInt")
-        protected long phoneNumber;
+        protected String phoneNumber;
         @XmlSchemaType(name = "unsignedByte")
         protected short isAdmin;
         @XmlAttribute(name = "ID", required = true)
@@ -181,7 +181,7 @@ public class Accounts {
          * Gets the value of the phoneNumber property.
          * 
          */
-        public long getPhoneNumber() {
+        public String getPhoneNumber() {
             return phoneNumber;
         }
 
@@ -189,7 +189,7 @@ public class Accounts {
          * Sets the value of the phoneNumber property.
          * 
          */
-        public void setPhoneNumber(long value) {
+        public void setPhoneNumber(String value) {
             this.phoneNumber = value;
         }
 

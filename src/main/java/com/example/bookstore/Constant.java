@@ -6,4 +6,5 @@ public class Constant {
     public final String FavoriteXMLPath = "src/main/resources/xml/FavoritesTest.xml";
 
     public final String AccountXMLPath = "src/main/resources/xml/Accounts.xml";
+    public final String ProductXMLPath = "src/main/resources/xml/Products.xml";
 }
