@@ -1,27 +1,25 @@
 package com.example.bookstore.controller;
 
-import com.example.bookstore.entity.Categories;
 import com.example.bookstore.entity.Products;
 import com.example.bookstore.service.impl.CategoryServiceImpl;
-import com.example.bookstore.service.impl.JAXBParser;
 import com.example.bookstore.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-public class HomeController {
+public class ShopController {
     @Autowired
     HttpServletRequest request;
 
@@ -34,8 +32,8 @@ public class HomeController {
     @Autowired
     CategoryServiceImpl categoryService;
 
-//    @GetMapping("/")
-//    public String index(@RequestParam(name = "cateId",required = false) String cateId) {
+//    @GetMapping("/shop")
+//    public String showShop(@RequestParam(name = "cateId",required = false) String cateId) {
 //        if(cateId == null) {
 //            request.setAttribute("lstProduct", productService.getAllProduct());
 //        }else {
@@ -44,11 +42,11 @@ public class HomeController {
 //        request.setAttribute("lstCategory", categoryService.getAllCategory());
 //        request.setAttribute("categoryID", cateId);
 //
-//        return "index";
+//        return "product";
 //    }
 
-    @GetMapping("/")
-    public String index(@RequestParam(name = "cateId",required = false) String cateId, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+    @GetMapping("/shop")
+    public String showShop(@RequestParam(name = "cateId",required = false) String cateId, @RequestParam("page") Optional<Integer> page,@RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(4);
         List<Products.Product> lstProduct = null;
@@ -70,29 +68,6 @@ public class HomeController {
         }
         request.setAttribute("lstCategory", categoryService.getAllCategory());
         request.setAttribute("categoryID", cateId);
-
-        return "index";
-    }
-
-    @GetMapping("/product/detail/{productId}")
-    public String detail(@PathVariable("productId") String productId) {
-        Products.Product product = productService.getProductByID(Integer.parseInt(productId));
-        request.setAttribute("productDetail", product);
-        List<Products.Product> lstRelated = new ArrayList<Products.Product>();
-        if(productService.getProductByCategoryID(product.getCategoryId()).size() > 8){
-            lstRelated = productService.getProductByCategoryID(product.getCategoryId()).subList(0,7);
-        }else {
-            lstRelated = productService.getProductByCategoryID(product.getCategoryId());
-        }
-        for (int i = 0; i < lstRelated.size(); i++) {
-            if(lstRelated.get(i).getID() == product.getID()){
-                lstRelated.remove(i);
-                break;
-            }
-        }
-        request.setAttribute("lstRelated", lstRelated);
-        Categories.Category category = categoryService.getCategoryByID(product.getCategoryId());
-        request.setAttribute("categoryObj", category);
-        return "detail";
+        return "product";
     }
 }
