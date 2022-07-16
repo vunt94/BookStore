@@ -1,5 +1,5 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <header>
     <!-- Header desktop -->
     <div class="container-menu-desktop">
@@ -54,8 +54,8 @@
                             <a href="shoping-cart.html">Features</a>
                         </li>
 
-                        <li>
-                            <a href="blog.html">Blog</a>
+                        <li id="test">
+                            <a href="#">Blog</a>
                         </li>
 
                         <li>
@@ -74,11 +74,15 @@
                         <i class="zmdi zmdi-search"></i>
                     </div>
 
-                    <a href="${pageContext.request.contextPath}/shopingCart" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="2">
+                    <a href="${pageContext.request.contextPath}/shopingCart"
+                       class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+                       data-notify="2">
                         <i id="shopping-cart" class="zmdi zmdi-shopping-cart"></i>
                     </a>
 
-                    <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="">
+                    <a href="#"
+                       class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-favorite-header-noti js-show-cart"
+                       data-favorite-noti="${size}">
                         <i id="wishlistIcon" class="zmdi zmdi-favorite-outline"></i>
                     </a>
                 </div>
@@ -99,11 +103,13 @@
                 <i class="zmdi zmdi-search"></i>
             </div>
 
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+                 data-notify="2">
                 <i class="zmdi zmdi-shopping-cart"></i>
             </div>
 
-            <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+            <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
+               data-notify="0">
                 <i class="zmdi zmdi-favorite-outline"></i>
             </a>
         </div>
@@ -164,8 +170,8 @@
                 <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
             </li>
 
-            <li>
-                <a href="blog.html">Blog</a>
+            <li id="">
+                <a href="#">Blog</a>
             </li>
 
             <li>
@@ -197,40 +203,15 @@
     <div class="wrap-header-cart js-panel-cart">
         <div class="s-full js-hide-cart"></div>
 
-        <div id="wishlist" class="header-cart flex-col-l p-l-65 p-r-25 ">
+        <div id="wishlist" class="header-cart flex-col-l p-l-25 p-r-15 ">
             <div class="header-cart-title flex-w flex-sb-m p-b-8">
                 <span class="mtext-103 cl2">
 					Favorite List
 				</span>
-
-<%--                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">--%>
-<%--                    <i class="zmdi zmdi-close"></i>--%>
-<%--                </div>--%>
             </div>
             <div id="header-cart__content" class="header-cart--scroll">
 
             </div>
-
-<%--            <div class="header-cart-content flex-w js-pscroll">--%>
-<%--                <ul class="header-cart-wrapitem w-full">--%>
-<%--                    <c:forEach  items='${wishlist}' var ="product">--%>
-<%--                        <li>--%>
-<%--                        <form class="header-cart-item flex-w flex-t m-b-12" id="${product.ID}" method="post" action="/deleteProduct">--%>
-<%--                            <div onclick="document.getElementById(${product.ID}).submit();" class="header-cart-item-img" >--%>
-<%--                                <img  class="productImage" src="images/book/${product.image}" alt="IMG">--%>
-<%--                            </div>--%>
-<%--                            <div class="header-cart-item-txt p-t-8">--%>
-<%--                                <a href="" class="header-cart-item-name m-b-18 hov-cl1 trans-04">--%>
-<%--                                        ${product.name}--%>
-<%--                                </a>--%>
-<%--                            </div>--%>
-<%--                            <input type="hidden" name="id" value="${product.ID}">--%>
-<%--                            <input type="hidden" name="url" value="${url}">--%>
-<%--                        </form>--%>
-<%--                        </li>--%>
-<%--                    </c:forEach>--%>
-<%--                </ul>--%>
-<%--            </div>--%>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

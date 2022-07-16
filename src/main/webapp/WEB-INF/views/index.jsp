@@ -390,16 +390,13 @@
 									$16.64
 								</span>
                         </div>
-                        <form id="10" method="post" action="/addToWishlist">
                         <div class="block2-txt-child2 flex-r p-t-3">
                             <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
                                 <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-                                <img onclick="document.getElementById('10').submit();" id="test" class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+                                <img onclick="addToWishlist(event, 11)" class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
                             </a>
                         </div>
-                        <input type="hidden" name="id" value="10">
-                        <input type="hidden" name="url" value="${url}">
-                        </form>
+
                     </div>
                 </div>
             </div>
@@ -1124,21 +1121,6 @@
 <script src="js/main.js"></script>
 <script src="js/favorite.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<%--<script>--%>
-<%--    $("#test").click(function () {--%>
-<%--        $.ajax({--%>
-<%--            type: "POST",--%>
-<%--            data: {isAdd: 'true'},--%>
-<%--            url: '${pageContext.request.contextPath}/addToWishlist',--%>
-<%--            success: function (data) {--%>
-<%--                console.log("Success!")--%>
-<%--            },--%>
-<%--            failure: function (errMsg) {--%>
-<%--                console.log(errMsg.toString())--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
 
 
 </body>

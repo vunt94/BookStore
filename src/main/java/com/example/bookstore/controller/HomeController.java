@@ -23,11 +23,9 @@ public class HomeController {
     @GetMapping("/")
     public String index(HttpSession session, HttpServletRequest request) {
         session.setAttribute("accId", 4);
-//        int accId = (int) session.getAttribute("accId");
-//        List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
-//
-//        request.setAttribute("url", INDEX_URL);
-//        request.setAttribute("wishlist", productService.getElementOfWishlistByPid(listPId));
+        int accId = (int) session.getAttribute("accId");
+        List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
+        request.setAttribute("size", productService.getElementOfWishlistByPid(listPId).size());
         return INDEX_URL;
     }
 }

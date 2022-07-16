@@ -17,27 +17,7 @@
         <accountId>4</accountId>
     </Favorite>
     <Favorite>
-        <productId>4</productId>
-        <accountId>4</accountId>
-    </Favorite>
-    <Favorite>
-        <productId>5</productId>
-        <accountId>4</accountId>
-    </Favorite>
-    <Favorite>
-        <productId>6</productId>
-        <accountId>4</accountId>
-    </Favorite>
-    <Favorite>
-        <productId>7</productId>
-        <accountId>4</accountId>
-    </Favorite>
-    <Favorite>
-        <productId>8</productId>
-        <accountId>4</accountId>
-    </Favorite>
-    <Favorite>
-        <productId>9</productId>
+        <productId>10</productId>
         <accountId>4</accountId>
     </Favorite>
 </Favorites>

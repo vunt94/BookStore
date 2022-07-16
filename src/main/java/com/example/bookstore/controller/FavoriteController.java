@@ -44,64 +44,37 @@ public class FavoriteController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = {"/addToWishlist"}, method = RequestMethod.POST)
-    public String addProductToWishlist(@RequestParam Map<String, String> map,
-                                       HttpServletRequest request) {
-        Favorites.Favorite favorite = new Favorites.Favorite();
-        short pid = 10;
-        short aid = 4;
-        String url = map.get("url");
-        favorite.setProductId(pid);
-        favorite.setAccountId(aid);
-        System.out.println("Add product to wishlist: " + url);
-        favoriteService.addProductToWishList(favorite);
-        List<Short> listPId = favoriteService.getListProductIdByAccId(aid);
-        request.setAttribute("wishlist", productService.getElementOfWishlistByPid(listPId));
-        return url;
-    }
-
-//    @RequestMapping(value = {"/deleteProduct"}, method = RequestMethod.POST)
-//    public String deleteProductInWishlist(@RequestParam Map<String, String> map,
-//                                          HttpSession session,
-//                                          HttpServletRequest request) throws IOException {
-//        int pid = Integer.parseInt(map.get("id"));
-//        String url = map.get("url");
-//        int aid = (int) session.getAttribute("accId");
-//        Favorites favorites = favoriteService.deleteProductInWishlist(pid, aid);
-//        favoriteService.writeNewWishlistToXML(favorites);
-//        List<Short> listPId = favoriteService.getListProductIdByAccId(aid);
-//        request.setAttribute("wishlist", productService.getElementOfWishlistByPid(listPId));
-//        request.setAttribute("isDisplayWishlist", true);
-//        return url;
-//    }
-
-    @RequestMapping(value = {"/deleteProduct"}, method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.OK)
-    public void deleteProductInWishlist(@RequestParam Map<String, String> map,
-                                          HttpSession session,
-                                          HttpServletRequest request) throws IOException {
-        int pid = Integer.parseInt(map.get("id"));
-        String url = map.get("url");
-        int aid = (int) session.getAttribute("accId");
-        Favorites favorites = favoriteService.deleteProductInWishlist(pid, aid);
-        favoriteService.writeNewWishlistToXML(favorites);
-        List<Short> listPId = favoriteService.getListProductIdByAccId(aid);
-        request.setAttribute("wishlist", productService.getElementOfWishlistByPid(listPId));
-        request.setAttribute("isDisplayWishlist", true);
-    }
-
-    @RequestMapping(value = {"/showWishlist"}, method = RequestMethod.POST)
-    public String showWishlist(ModelMap modelMap, HttpSession session) {
-        session.setAttribute("accId", 4);
-        int accId = (int) session.getAttribute("accId");
-        List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
-        modelMap.addAttribute("wishlist", productService.getElementOfWishlistByPid(listPId));
-        return "forward:/";
-    }
-
     @GetMapping("/getWishlist")
     public ResponseEntity<Object> getAllBooks(HttpSession session) {
         int accId = (int) session.getAttribute("accId");
+        List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
+        List<Products.Product> wishlist = productService.getElementOfWishlistByPid(listPId);
+        ServiceRespone<List<Products.Product>> response = new ServiceRespone<>("success", wishlist);
+        return new ResponseEntity<Object>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/deleteProductInWishlist")
+    public ResponseEntity<Object> deleteProductInWishlist(@RequestParam(name="id") String id,
+                                          HttpSession session) {
+
+        int aid = Integer.parseInt(session.getAttribute("accId").toString()) ;
+        Favorites favorites = favoriteService.deleteProductInWishlist(Integer.parseInt(id), aid);
+
+        favoriteService.writeNewWishlistToXML(favorites);
+        List<Short> listPId = favoriteService.getListProductIdByAccId(aid);
+        List<Products.Product> wishlist = productService.getElementOfWishlistByPid(listPId);
+        ServiceRespone<List<Products.Product>> response = new ServiceRespone<>("success", wishlist);
+        return new ResponseEntity<Object>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/addProductToWishlist")
+    public ResponseEntity<Object> addProductToWishlist(@RequestParam(name="id") String pid,
+                                                          HttpSession session) {
+        Favorites.Favorite favorite = new Favorites.Favorite();
+        short accId = Short.parseShort(session.getAttribute("accId").toString());
+        favorite.setProductId(Short.parseShort(pid));
+        favorite.setAccountId(accId);
+        favoriteService.addProductToWishList(favorite);
         List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
         List<Products.Product> wishlist = productService.getElementOfWishlistByPid(listPId);
         ServiceRespone<List<Products.Product>> response = new ServiceRespone<>("success", wishlist);
