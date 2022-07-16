@@ -42,12 +42,12 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="active-menu">
-                            <a href="index.html">Home</a>
+                            <a href="/">Home</a>
 
                         </li>
 
                         <li>
-                            <a href="product.html">Shop</a>
+                            <a href="/shop">Shop</a>
                         </li>
 
                         <li class="label1" data-label1="hot">
@@ -155,7 +155,7 @@
 
         <ul class="main-menu-m">
             <li>
-                <a href="index.jsp">Home</a>
+                <a href="/">Home</a>
 
                 <span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
