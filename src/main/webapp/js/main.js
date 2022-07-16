@@ -1,4 +1,31 @@
 
+function deleteProduct(id) {
+    console.log("here");
+    let url = location.href;
+    url = url.substring(0, url.length - 1) + 'deleteProduct';
+    console.log(url)
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        "id" : id,
+        "url" : location.pathname
+    }));
+}
+
+function addProduct(id) {
+    let urlAdd = location.href;
+    urlAdd = urlAdd.substring(0, urlAdd.length - 1) + 'addToWishlist';
+    console.log(url)
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", urlAdd, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        "id" : id,
+        "url" : location.pathname
+    }));
+}
+
 (function ($) {
     "use strict";
 
@@ -189,16 +216,18 @@
         }    
     });
 
-
-
-
     /*==================================================================
     [ Cart ]*/
+
     $('.js-show-cart').on('click',function(){
         $('.js-panel-cart').addClass('show-header-cart');
     });
 
-    $('.js-hide-cart').on('click',function(){
+    // $('.js-hide-cart').on('click',function(){
+    //     $('.js-panel-cart').removeClass('show-header-cart');
+    // });
+
+    $('.zmdi-close').on('click',function(){
         $('.js-panel-cart').removeClass('show-header-cart');
     });
 

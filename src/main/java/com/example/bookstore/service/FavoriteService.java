@@ -3,8 +3,17 @@ package com.example.bookstore.service;
 import com.example.bookstore.entity.Favorites;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
+
 
 public interface FavoriteService {
     void addProductToWishList(Favorites.Favorite favorite);
-    void deleteProductFromFavoriteXML(int productId, int accountId);
+    Favorites deleteProductInWishlist(int productId, int accountId);
+
+    List<Short> getListProductIdByAccId(int accId);
+
+    void writeNewWishlistToXML(Favorites favorites);
+
+
 }
