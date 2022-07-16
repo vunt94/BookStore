@@ -19,6 +19,10 @@
                         Create Product
                     </a>
 
+                    <a href="/ManagerProduct" class="flex-c-m trans-04 p-lr-25">
+                        Manager
+                    </a>
+
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         My Account
                     </a>

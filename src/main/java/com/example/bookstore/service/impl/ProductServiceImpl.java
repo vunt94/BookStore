@@ -19,4 +19,10 @@ public class ProductServiceImpl implements ProductService {
         jaxbParser.writeProductToXML(new Products(products));
         return product;
     }
+
+    @Override
+    public List<Products.Product> getAllProduct() {
+        List<Products.Product> products = jaxbParser.getProductsByJAXB();
+        return products;
+    }
 }
