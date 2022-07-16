@@ -336,7 +336,7 @@
 </div>
 <!-- shipment -->
     <div class="container">
-        <div class="row">
+        <div class="">
             <div class="">
                 <div class="m-l-25 m-r--38 m-lr-0-xl">
                     <div class="wrap-table-shopping-cart">
@@ -347,10 +347,10 @@
                                 </th>
                             </tr>
 
-                            <tr class="table_row">
+                            <tr class="table_row" style="padding-bottom: 20px; height: 80px;">
                                 <td class="column-1"><b>Dinh Phuong Thao</b></td>
-                                <td class="column-2"><b>+0811223344</b></td>
-                                <td class="column-3">Lane 123, Minh Khai Ward, Hanoi, Viet Nam</td>
+                                <td class="column-2">Lane 123, Minh Khai Ward, Hanoi, Viet Nam</td>
+                                <td class="column-3"><b>+0811223344</b></td>
                                 <td class="column-4">Defalt</td>
                                 <td class="column-5">
                                     <div >
