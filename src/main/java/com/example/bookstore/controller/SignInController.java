@@ -46,8 +46,11 @@ public class SignInController {
                 if (acc != null) {//phone and password of account in cookie are correct(in case user change password)
                     //add to seesion
                     HttpSession session = request.getSession();
-                    session.setAttribute("user", acc);
-                    return "index";
+
+                    if (session.getAttribute("user") != null) {
+                        return "index";
+                    }
+                    return "signin";
                 } else {//incorrect phone or password -> login again
                     return "signin";
                 }
@@ -65,42 +68,34 @@ public class SignInController {
         String password = request.getParameter(("password"));
         String rememberMe = request.getParameter(("rememberMe"));
         Accounts.Account acc = loginService.getAccount(phoneNumber, password);
-        System.out.println(acc);
 
-        boolean isPhoneNumberExist = registerService.checkExist(phoneNumber);
-        if (isPhoneNumberExist) {
-            boolean isLoginSuccess = loginService.login(phoneNumber, password);
-            if (isLoginSuccess) {
-                System.out.println("success");
-                if(rememberMe != null) {
-                    Cookie cPhone = new Cookie("phone", phoneNumber);
-                    Cookie cPass = new Cookie("password", password);
+        boolean isLoginSuccess = loginService.login(phoneNumber, password);
+        if (isLoginSuccess) {
+            if (rememberMe != null) {
+                Cookie cPhone = new Cookie("phone", phoneNumber);
+                Cookie cPass = new Cookie("password", password);
 
-                    //set how long cookie will exist(second)
-                    cPhone.setMaxAge(60 * 100);
-                    cPass.setMaxAge(60 * 100);
+                //set how long cookie will exist(second)
+                cPhone.setMaxAge(60);
+                cPass.setMaxAge(60);
 
-                    //Add to browser
-                    response.addCookie(cPhone);
-                    response.addCookie(cPass);
-                }
-
-                HttpSession session = request.getSession();
-                session.setAttribute("user", acc);
-
-//                if (acc.getIsAdmin() != 1) {
-//                    response.sendRedirect("home");
-//                }else{
-//                    response.sendRedirect("index");
-//                }
-                return "index";
-            } else {
-                System.out.println("success");
+                //Add to browser
+                response.addCookie(cPhone);
+                response.addCookie(cPass);
             }
+
+            HttpSession session = request.getSession();
+            session.setAttribute("user", acc);
+
+            if (acc.getIsAdmin() == 1) {
+                response.sendRedirect("redirect:/ManagerProduct");
+            } else {
+                response.sendRedirect("redirect:/home");
+            }
+            return "redirect:/home";
+        } else {
+            request.setAttribute("isLoginFail", 1);
+            return "signin";
         }
-        if (!isPhoneNumberExist) {
-            System.out.println("phone number doesn't exist");
-        }
-        return "signin";
     }
 }

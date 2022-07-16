@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
     <title>Sign in</title>
@@ -42,6 +44,14 @@
                     />
                     <span class="focus-input100"></span>
                 </div>
+
+                <c:choose>
+                    <c:when test="${isLoginFail == 1}">
+                        <div class="alert-error">
+                            <p class="alert__content"> Check your phone number and password again!</p>
+                        </div>
+                    </c:when>
+                </c:choose>
 
                 <div class="flex-sb-m w-full p-t-3 p-b-32">
                     <div class="contact100-form-checkbox">

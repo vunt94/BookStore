@@ -81,15 +81,18 @@ public class JAXBParser {
         }
     }
 
-    public Products readListProductFromXML() {
+    public void writeAccountToXML(Accounts.Account account) {
         try {
-            JAXBContext context = JAXBContext.newInstance(Products.class);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            Products products =
-                    (Products) unmarshaller.unmarshal(new File(constant.ProductXMLPath));
-            return products;
+        JAXBContext context = JAXBContext.newInstance(Accounts.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        Accounts accountCurrentList =
+                (Accounts) unmarshaller.unmarshal(new File(constant.AccountXMLPath));
+        accountCurrentList.getAccount().add(account);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.marshal(accountCurrentList, new File(constant.AccountXMLPath));
+
         } catch (JAXBException e) {
-            throw new RuntimeException(e);
+            throw  new RuntimeException(e);
         }
     }
 

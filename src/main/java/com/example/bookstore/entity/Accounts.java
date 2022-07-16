@@ -124,10 +124,10 @@ public class Accounts {
         @XmlSchemaType(name = "unsignedInt")
         protected String phoneNumber;
         @XmlSchemaType(name = "unsignedByte")
-        protected short isAdmin;
+        protected int isAdmin;
         @XmlAttribute(name = "ID", required = true)
         @XmlSchemaType(name = "unsignedByte")
-        protected short id;
+        protected int id;
 
         /**
          * Gets the value of the userName property.
@@ -197,7 +197,7 @@ public class Accounts {
          * Gets the value of the isAdmin property.
          * 
          */
-        public short getIsAdmin() {
+        public int getIsAdmin() {
             return isAdmin;
         }
 
@@ -205,7 +205,7 @@ public class Accounts {
          * Sets the value of the isAdmin property.
          * 
          */
-        public void setIsAdmin(short value) {
+        public void setIsAdmin(int value) {
             this.isAdmin = value;
         }
 
@@ -213,7 +213,7 @@ public class Accounts {
          * Gets the value of the id property.
          * 
          */
-        public short getID() {
+        public int getID() {
             return id;
         }
 
@@ -221,7 +221,7 @@ public class Accounts {
          * Sets the value of the id property.
          * 
          */
-        public void setID(short value) {
+        public void setID(int value) {
             this.id = value;
         }
 
