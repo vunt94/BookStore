@@ -11,7 +11,7 @@ public class PaymentController {
     private ShipmentService shipmentService;
     @GetMapping("payment")
     public String index() {
-
+//  TODO: add process to create payment
         return "payment";
     }
 }
