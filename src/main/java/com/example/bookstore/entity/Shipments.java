@@ -111,13 +111,15 @@ public class Shipments {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
+            "userId",
         "orderId",
         "shippingAddress",
         "shippingCost",
         "shippingType"
     })
     public static class Shipment {
-
+        @XmlSchemaType(name = "unsignedByte")
+        protected int userId;
         @XmlSchemaType(name = "unsignedByte")
         protected short orderId;
         @XmlElement(required = true)
@@ -138,12 +140,19 @@ public class Shipments {
             return orderId;
         }
 
+        public int getUserId() {
+            return userId;
+        }
+
         /**
          * Sets the value of the orderId property.
          * 
          */
         public void setOrderId(short value) {
             this.orderId = value;
+        }
+        public void setUserId(int value) {
+            this.userId = value;
         }
 
         /**

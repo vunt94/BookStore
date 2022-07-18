@@ -15,15 +15,21 @@ public class ShipmentServiceImpl implements ShipmentService {
     public List<Shipments.Shipment> getShipmentsByUserId(String userId) {
         List<Shipments.Shipment> shipmentsByJAXB = jaxbParser.getShipmentsByJAXB();
         List<Shipments.Shipment> shipments = new ArrayList<>();
+
         for (Shipments.Shipment shipment: shipmentsByJAXB
              ) {
-//            if(shipment.get)
+            if(shipment.getUserId() == 1){
+                shipments.add(shipment);
+            }
         }
-        return null;
+        return shipments;
     }
 
     @Override
-    public Shipments addShipments(Shipments shipments) {
+    public Shipments addShipments(Shipments.Shipment shipment) {
+        List<Shipments.Shipment> shipments = jaxbParser.getShipmentsByJAXB();
+        shipments.add(shipment);
+        jaxbParser.writeFavoriteProductToXML(shipments);
         return null;
     }
 

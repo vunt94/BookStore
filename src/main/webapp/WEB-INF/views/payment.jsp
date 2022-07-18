@@ -70,6 +70,13 @@
                                 <td class="column-2"><b>Address</b></td>
                                 <td class="column-3"><b>Phone number</b></td>
                             </tr>
+                            <c:forEach items="${shipmentsByUserId}" var="item">
+                                <tr class="table_row" style="padding-bottom: 20px; height: 80px;">
+                                    <td class="column-1"><b>${account.getUserName()}</b></td>
+                                    <td class="column-2">${item.shippingAddress}</td>
+                                    <td class="column-3"><b>${account.phoneNumber}</b></td>
+                                </tr>
+                            </c:forEach>
                             <tr class="table_row" style="padding-bottom: 20px; height: 80px;">
                                 <td class="column-1" style="margin-left: 15px"><input name="name" type="text" style="border: solid"/></td>
                                 <td class="column-2"><input name="address" type="text" style="border: solid"/></td>
@@ -98,30 +105,27 @@
                                 <th class="column-4">Quantity</th>
                                 <th class="column-5">Total</th>
                             </tr>
-
-                            <tr class="table_row">
-                                <td class="column-1">
-                                    <div class="how-itemcart1">
-                                        <img src="images/item-cart-04.jpg" alt="IMG">
-                                    </div>
-                                </td>
-                                <td class="column-2">Fresh Strawberries</td>
-                                <td class="column-3">$ 36.00</td>
-                                <td class="column-4">2</td>
-                                <td class="column-5">$ 72.00</td>
-                            </tr>
-
-                            <tr class="table_row">
-                                <td class="column-1">
-                                    <div class="how-itemcart1">
-                                        <img src="images/item-cart-05.jpg" alt="IMG">
-                                    </div>
-                                </td>
-                                <td class="column-2">Lightweight Jacket</td>
-                                <td class="column-3">$ 16.00</td>
-                                <td class="column-4">2</td>
-                                <td class="column-5">$ 32.00</td>
-                            </tr>
+                            <c:forEach items="${orderDetailByOrder}" var="item">
+                            <c:forEach items="${productByOrder}" var="product">
+                                <c:if test = "${product.getID() == item.getProductID()}">
+                                <tr class="table_row">
+                                    <td class="column-1">
+                                        <div class="how-itemcart1">
+                                            <img src="images/book/${product.image}" alt="IMG">
+                                        </div>
+                                    </td>
+<%--                                    <td class="column-2">${product.getID()}</td>--%>
+<%--                                    <td class="column-3">${item.getProductID()}</td>--%>
+                                    <td class="column-2">${product.name}</td>
+                                    <td class="column-3">
+                                        $${product.price}</td>
+                                    <td class="column-4">${item.quantity}</td>
+                                    <td class="column-5">
+                                        $${item.subPrice}</td>
+                                </tr>
+                            </c:if>
+                            </c:forEach>
+                            </c:forEach>
                         </table>
                     </div>
 
@@ -198,7 +202,7 @@
 
                         <div class="size-209 p-t-1">
 								<span class="mtext-110 cl2">
-									$79.65
+									$${order.totalPrice}
 								</span>
                         </div>
                     </div>
