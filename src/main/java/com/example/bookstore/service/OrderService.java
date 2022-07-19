@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface OrderService {
     public Orders.Order getOrder(int OrderId);
-    public List<OrderDetails.OrderDetail> getOrderDetailByOrder(String orderId);
+    public List<OrderDetails.OrderDetail> getOrderDetailByOrder(int orderId);
     public Orders updateOrder(String userId);
 
     public List<Products.Product> getProductByOrder(List<OrderDetails.OrderDetail> orderDetails);

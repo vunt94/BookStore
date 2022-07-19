@@ -12,17 +12,17 @@ import java.util.List;
 public class ShipmentServiceImpl implements ShipmentService {
     PaymentJAXBParser jaxbParser = new PaymentJAXBParser();
     @Override
-    public List<Shipments.Shipment> getShipmentsByUserId(String userId) {
+    public Shipments.Shipment getShipmentsByOrderId(int orderId) {
         List<Shipments.Shipment> shipmentsByJAXB = jaxbParser.getShipmentsByJAXB();
         List<Shipments.Shipment> shipments = new ArrayList<>();
 
         for (Shipments.Shipment shipment: shipmentsByJAXB
              ) {
-            if(shipment.getUserId() == 1){
-                shipments.add(shipment);
+            if(shipment.getOrderId() == orderId){
+                return shipment;
             }
         }
-        return shipments;
+        return null;
     }
 
     @Override

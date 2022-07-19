@@ -12,20 +12,20 @@ import java.util.List;
 
 @Controller
 public class PaymentController {
+
+    private final int ORDER_DEMO_ID = 1;
     @Autowired
     private ShipmentService shipmentService;
     @Autowired
     private OrderService orderService;
 
-    @Autowired
-    HttpServletRequest request;
     @GetMapping("payment")
-    public String index() {
-//  TODO: add process to create payment
-        Accounts.Account acc =orderService.getAccountById(1);
-        List<Shipments.Shipment> shipmentsByUserId = shipmentService.getShipmentsByUserId("1");
-        Orders.Order order = orderService.getOrder(1);
-        List<OrderDetails.OrderDetail> orderDetail = orderService.getOrderDetailByOrder("1");
+    public String index(HttpServletRequest request) {
+    //  TODO: Account get from session
+        Accounts.Account acc = orderService.getAccountById(ORDER_DEMO_ID);
+        Shipments.Shipment shipmentsByUserId = shipmentService.getShipmentsByOrderId(ORDER_DEMO_ID);
+        Orders.Order order = orderService.getOrder(ORDER_DEMO_ID);
+        List<OrderDetails.OrderDetail> orderDetail = orderService.getOrderDetailByOrder(ORDER_DEMO_ID);
         List<Products.Product> productByOrder = orderService.getProductByOrder(orderDetail);
         request.setAttribute("shipmentsByUserId",shipmentsByUserId);
         request.setAttribute("orderDetailByOrder", orderDetail);
@@ -34,4 +34,6 @@ public class PaymentController {
         request.setAttribute("order",order);
         return "payment";
     }
+
+
 }

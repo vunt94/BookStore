@@ -28,13 +28,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderDetails.OrderDetail> getOrderDetailByOrder(String orderId) {
+    public List<OrderDetails.OrderDetail> getOrderDetailByOrder(int orderId) {
         List<OrderDetails.OrderDetail> orderDetailByJAXB = jaxbParser.getOrderDetailByJAXB();
         List<OrderDetails.OrderDetail> orderDetailByOrder = new ArrayList<>();
-        int id = Integer.parseInt(orderId);
-        for (OrderDetails.OrderDetail orderDetail: orderDetailByJAXB
-        ) {
-            if(orderDetail.getOrderID()==id){
+        for (OrderDetails.OrderDetail orderDetail: orderDetailByJAXB) {
+            if(orderDetail.getOrderID() == orderId){
                 orderDetailByOrder.add(orderDetail);
             }
         }
