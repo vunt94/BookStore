@@ -26,6 +26,10 @@
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         USD
                     </a>
+
+                    <a href="logout" class="flex-c-m trans-04 p-lr-25">
+                        Log out
+                    </a>
                 </div>
             </div>
         </div>

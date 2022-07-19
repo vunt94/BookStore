@@ -24,7 +24,7 @@ public class SignInController {
     private SignInService loginService;
 
     @GetMapping("signin")
-    public String index(HttpServletRequest request, HttpServletResponse response) {
+    public String doGet(HttpServletRequest request, HttpServletResponse response) {
         //get cookie
         Cookie[] cookie = request.getCookies();
         String phone = "";
