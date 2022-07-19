@@ -26,10 +26,14 @@
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         USD
                     </a>
-
-                    <a href="logout" class="flex-c-m trans-04 p-lr-25">
-                        Log out
-                    </a>
+                    <c:choose>
+                        <c:when test="${accountSession != null}">
+                            <a href="logout" class="flex-c-m trans-04 p-lr-25">Log out</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="signin" class="flex-c-m trans-04 p-lr-25">Log in</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>

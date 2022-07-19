@@ -17,8 +17,6 @@ import java.io.IOException;
 
 @Controller
 public class SignInController {
-    @Autowired
-    private SignUpService registerService;
 
     @Autowired
     private SignInService loginService;
