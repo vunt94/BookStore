@@ -26,4 +26,10 @@ public interface ProductService {
 
     Products.Product createNewProduct(Products.Product product);
 
+    List<Products.Product> updateProduct(Products.Product product);
+
+    List<Products.Product> deleteProduct(Products.Product product);
+
+
+
 }

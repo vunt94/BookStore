@@ -68,7 +68,9 @@
                         </li>
 
                         <li>
-                            <a href="contact.html">Contact</a>
+                            <a href="/addProduct" style="color: #0c5460" class="flex-c-m trans-04 p-lr-25">
+                                Create Product
+                            </a>
                         </li>
                     </ul>
                 </div>
