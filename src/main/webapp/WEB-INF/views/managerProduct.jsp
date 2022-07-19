@@ -6,7 +6,8 @@
 <html lang="en">
 <html>
 <head>
-    <title>Create product</title>
+    <title>Manager product</title>
+    <base href="/">
     <link rel="stylesheet" type="text/css" href="css/productStyle.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,100 +40,58 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css"/>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/managerProduct.css">
     <!--============================================================-->
 </head>
 <body>
 <%@include file="layout/managerHeader.jsp" %>
-<%--<jsp:include page="./layout/headerComponent.jsp"></jsp:include>--%>
 <div class="container__content">
-    <c:if test="${addProductSuccess}">
-        <div>Successfully added product ${savedProduct.name}</div>
-    </c:if>
-    <c:url var="add_product_url" value="/addProduct"/>
     <div class="content__form">
+        <table class="table">
+            <thead class="thead-primary">
+            <tr>
+                <th class="text-center">Product Name</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Image</th>
+                <th class="text-center">Author</th>
+                <th class="text-center">Publisher</th>
+                <th class="text-center">Action</th>
 
-
-        <form action="${add_product_url}" method="post" modelAttribute="product">
-            <div class="row">
-                <div class="col-25">
-                    <label>Product Name</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" path="name" id="name" name="name" required="" placeholder="Product name..">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label>Amount</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" path="amount" id="amount" name="amount" required=""
-                           placeholder="Product amount..">
-                </div>
-                <p id="amountError"></p>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label>Price</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" path="price" id="price" name="price" required="" placeholder="Product price..">
-                </div>
-                <p id="priceError"></p>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label>Category</label>
-                </div>
-                <div class="col-75">
-                    <select class="custom-select tm-select-accounts" path="categoryId" id="categoryId"
-                            name="categoryId">
-                        <option selected="">Select category</option>
-                        <option value="1">Story</option>
-                        <option value="2">Novel</option>
-                        <option value="3">Children's books</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="description">Description</label>
-                </div>
-                <div class="col-75">
-                <textarea id="description" path="description" name="description" required=""
-                          placeholder="Write something about product.." style="height:200px"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label class="col-md-4 control-label" for="image">Image</label>
-                </div>
-                <div class="col-75">
-                    <input id="image" path="image" name="image" required="" class="input-file" type="file">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label>Author Name</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" id="author" path="author" name="author" required="" placeholder="Author name..">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label>Publisher</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" path="publisher" id="publisher" required="" name="publisher">
-                </div>
-            </div>
-            <div class="row f-l-end">
-                <input type="submit" onclick=" myFunction()" value="Submit">
-            </div>
-        </form>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${products.content}" var="product">
+                <tr>
+                    <td class="text-center"> ${product.name} </td>
+                    <td class="text-center"> ${product.amount} </td>
+                    <td class="text-center"> ${product.price} </td>
+                    <td class="text-center"> <img src="images/book/${product.image}" alt="IMG-PRODUCT" style="width: 30%"> </td>
+                    <td class="text-center"> ${product.author} </td>
+                    <td class="text-center"> ${product.publisher} </td>
+                    <td>
+                        <a href="/viewEditProduct/${product.ID}" class="btn-outline-primary mr-2" style="color: #117a8b">&#9998;Edit</a>
+                        <br/>
+                        <a href="/deleteProduct/${product.ID}" onclick=" ConfirmDelete()" class="btn-outline-primary mr-2" style="color: #117a8b" >&#x2718;Delete</a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <c:forEach items="${pageNumbers}" var="pageNumber">
+                    <li class="page-item ${pageNumber == products.number + 1 ? "active" : ""}"><a class="page-link" href="/managerProduct?page=${pageNumber}&size=${products.size}">${pageNumber}</a></li>
+                </c:forEach>
+            </ul>
+        </nav>
     </div>
 </div>
+
 <%@include file="layout/footer.jsp" %>
 <script src="js/main.js"></script>
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -181,21 +140,8 @@
 <!--===============================================================================================-->
 <script src="js/main.js"></script>
 <script>
-    function myFunction() {
-        // Get the value of the input field with id="numb"
-        let x = document.getElementById("amount").value;
-        let y = document.getElementById("price").value;
-        let text;
-        if (isNaN(x) || x < 1 ) {
-            text = "Input not valid";
-            document.getElementById("amountError").innerHTML = text;
-            return false;
-        }
-        if (isNaN(y) || y < 1 ) {
-            text = "Input not valid";
-            document.getElementById("priceError").innerHTML = text;
-            return false;
-        }
+    function ConfirmDelete() {
+        confirm("Do you wanna delete product!");
     }
 </script>
 </body>

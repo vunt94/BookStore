@@ -96,7 +96,14 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   font-family: Montserrat-Bold;
   src: url('../fonts/Montserrat/Montserrat-Bold.ttf'); 
 }
+/*.disable-scroll{*/
+/*  overflow-y: hidden;*/
+/*}*/
 
+
+/*.disable-scroll{*/
+/*  overflow-y: hidden;*/
+/*}*/
 
 /*//////////////////////////////////////////////////////////////////
 [ RS PLUGIN ]*/
@@ -492,6 +499,24 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*---------------------------------------------*/
 .icon-header-noti::after {
   content: attr(data-notify);
+  font-family: Poppins-Regular;
+  font-size: 12px;
+  color: #fff;
+  line-height: 15px;
+  text-align: center;
+
+  display: block;
+  position: absolute;
+  top: -7px;
+  right: 0;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  background-color: #717fe0;
+}
+
+.icon-favorite-header-noti::after {
+  content: attr(data-favorite-noti);
   font-family: Poppins-Regular;
   font-size: 12px;
   color: #fff;
@@ -2634,7 +2659,10 @@ input.num-product::-webkit-inner-spin-button {
 .size-303 {
   height: 390px;
 }
-
+.size-333 {
+  width: 520px;
+  height: 75px;
+}
 
 /*==================================================================
    BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND 
@@ -3158,6 +3186,14 @@ input.num-product::-webkit-inner-spin-button {
   opacity: 1;
 }
 
+.disable-scroll{
+  overflow-y: hidden;
+}
+
+.header-cart--scroll {
+  overflow-y: scroll;
+  width: 100%;
+}
 
 
 

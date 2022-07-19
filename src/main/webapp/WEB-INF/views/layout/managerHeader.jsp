@@ -31,14 +31,6 @@
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         USD
                     </a>
-                    <c:choose>
-                        <c:when test="${accountSession != null}">
-                            <a href="logout" class="flex-c-m trans-04 p-lr-25">Log out</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="signin" class="flex-c-m trans-04 p-lr-25">Log in</a>
-                        </c:otherwise>
-                    </c:choose>
                 </div>
             </div>
         </div>
@@ -76,7 +68,9 @@
                         </li>
 
                         <li>
-                            <a href="contact.html">Contact</a>
+                            <a href="/addProduct" style="color: #0c5460" class="flex-c-m trans-04 p-lr-25">
+                                Create Product
+                            </a>
                         </li>
                     </ul>
                 </div>

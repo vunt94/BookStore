@@ -6,7 +6,8 @@
 <html lang="en">
 <html>
 <head>
-    <title>Create product</title>
+    <title>Edit product</title>
+    <base href="/">
     <link rel="stylesheet" type="text/css" href="css/productStyle.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,20 +46,17 @@
 <%@include file="layout/managerHeader.jsp" %>
 <%--<jsp:include page="./layout/headerComponent.jsp"></jsp:include>--%>
 <div class="container__content">
-    <c:if test="${addProductSuccess}">
-        <div>Successfully added product ${savedProduct.name}</div>
-    </c:if>
-    <c:url var="add_product_url" value="/addProduct"/>
+
     <div class="content__form">
 
 
-        <form action="${add_product_url}" method="post" modelAttribute="product">
+        <form action="/editProduct" method="post" modelAttribute="product">
             <div class="row">
                 <div class="col-25">
                     <label>Product Name</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" path="name" id="name" name="name" required="" placeholder="Product name..">
+                    <input type="text" path="name" id="name" name="name" required="" value="${productDetail.name}" placeholder="Product name..">
                 </div>
             </div>
             <div class="row">
@@ -67,7 +65,7 @@
                 </div>
                 <div class="col-75">
                     <input type="text" path="amount" id="amount" name="amount" required=""
-                           placeholder="Product amount..">
+                           placeholder="Product amount.." value="${productDetail.amount}">
                 </div>
                 <p id="amountError"></p>
             </div>
@@ -76,7 +74,7 @@
                     <label>Price</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" path="price" id="price" name="price" required="" placeholder="Product price..">
+                    <input type="text" path="price" id="price" name="price" required="" value="${productDetail.price}" placeholder="Product price..">
                 </div>
                 <p id="priceError"></p>
             </div>
@@ -87,10 +85,23 @@
                 <div class="col-75">
                     <select class="custom-select tm-select-accounts" path="categoryId" id="categoryId"
                             name="categoryId">
-                        <option selected="">Select category</option>
-                        <option value="1">Story</option>
-                        <option value="2">Novel</option>
-                        <option value="3">Children's books</option>
+
+                        <c:if test="${productDetail.categoryId eq 1}" >
+                            <option selected value="1">Story</option>
+                            <option value="2">Novel</option>
+                            <option value="3">Children's books</option>
+                        </c:if>
+                        <c:if test="${productDetail.categoryId eq 2}" >
+                            <option selected value="2">Novel</option>
+                            <option value="1">Story</option>
+                            <option value="3">Children's books</option>
+                        </c:if>
+                        <c:if test="${productDetail.categoryId eq 3}" >
+                            <option selected value="3">Children's books</option>
+                            <option value="1">Story</option>
+                            <option value="2">Novel</option>
+
+                        </c:if>
                     </select>
                 </div>
             </div>
@@ -100,7 +111,7 @@
                 </div>
                 <div class="col-75">
                 <textarea id="description" path="description" name="description" required=""
-                          placeholder="Write something about product.." style="height:200px"></textarea>
+                          placeholder="Write something about product.." style="height:200px">${productDetail.description}</textarea>
                 </div>
             </div>
             <div class="row">
@@ -108,7 +119,7 @@
                     <label class="col-md-4 control-label" for="image">Image</label>
                 </div>
                 <div class="col-75">
-                    <input id="image" path="image" name="image" required="" class="input-file" type="file">
+                    <input id="image" path="image" name="image" value="${productDetail.image}" required="" class="input-file" type="file">
                 </div>
             </div>
             <div class="row">
@@ -116,7 +127,7 @@
                     <label>Author Name</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="author" path="author" name="author" required="" placeholder="Author name..">
+                    <input type="text" id="author" path="author" name="author" value="${productDetail.author}" required="" placeholder="Author name..">
                 </div>
             </div>
             <div class="row">
@@ -124,11 +135,16 @@
                     <label>Publisher</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" path="publisher" id="publisher" required="" name="publisher">
+                    <input type="text" path="publisher" id="publisher" value="${productDetail.publisher}" required="" name="publisher">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-75">
+                    <input type="hidden" id="ID" path="ID" name="ID" value="${productDetail.ID}">
                 </div>
             </div>
             <div class="row f-l-end">
-                <input type="submit" onclick=" myFunction()" value="Submit">
+                <input type="submit" value="Save">
             </div>
         </form>
     </div>
@@ -191,12 +207,13 @@
             document.getElementById("amountError").innerHTML = text;
             return false;
         }
-        if (isNaN(y) || y < 1 ) {
+        if (isNaN(y) || x < 1 ) {
             text = "Input not valid";
             document.getElementById("priceError").innerHTML = text;
             return false;
         }
     }
 </script>
+
 </body>
 </html>

@@ -2,7 +2,6 @@ package com.example.bookstore.controller;
 
 import com.example.bookstore.entity.Accounts;
 import com.example.bookstore.service.SignInService;
-import com.example.bookstore.service.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

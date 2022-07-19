@@ -1,5 +1,16 @@
 package com.example.bookstore.service.impl;
 
+import com.example.bookstore.entity.Categories;
+import com.example.bookstore.entity.Products;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.example.bookstore.Constant;
 import com.example.bookstore.entity.Accounts;
 import com.example.bookstore.entity.Favorites;
@@ -7,9 +18,35 @@ import com.example.bookstore.entity.Products;
 
 import javax.xml.bind.*;
 import java.io.File;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class JAXBParser {
+    public List<Products.Product> getProductsByJAXB() {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Products.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Products productList = (Products) unmarshaller.unmarshal(new File("src/main/resources/xml/Products.xml"));
+            return productList.getProduct();
+        } catch (JAXBException ex) {
+            Logger.getLogger(JAXBParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public List<Categories.Category> getCategoriesByJAXB() {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Categories.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Categories categories = (Categories) unmarshaller.unmarshal(new File("src/main/resources/xml/Categories.xml"));
+            return categories.getCategory();
+        } catch (JAXBException ex) {
+            Logger.getLogger(JAXBParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     private Constant constant = new Constant();
 
@@ -69,6 +106,16 @@ public class JAXBParser {
 
     }
 
+    public void writeProductToXML(Products products) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Products.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.marshal(products, new File("src/main/resources/xml/Products.xml"));
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Accounts readListAccountFromXML() {
         try {
             JAXBContext context = JAXBContext.newInstance(Accounts.class);
@@ -95,6 +142,19 @@ public class JAXBParser {
             throw  new RuntimeException(e);
         }
     }
+
+    public Products getListProductFromXML() {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Products.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Products products =
+                    (Products) unmarshaller.unmarshal(new File(constant.ProductXMLPath));
+            return products;
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 }
