@@ -20,8 +20,16 @@ public class SignInController {
     @Autowired
     private SignInService loginService;
 
+    @Autowired
+    HttpSession session;
+    @Autowired
+    HttpServletRequest request;
+
+    @Autowired
+    HttpServletResponse response;
+
     @GetMapping("signin")
-    public String doGet(HttpServletRequest request, HttpServletResponse response) {
+    public String doGet() {
         //get cookie
         Cookie[] cookie = request.getCookies();
         String phone = "";
@@ -44,7 +52,7 @@ public class SignInController {
                     //add to seesion
                     HttpSession session = request.getSession();
 
-                    if (session.getAttribute("user") != null) {
+                    if (session.getAttribute("accId") != null) {
                         return "index";
                     }
                     return "signin";
@@ -60,7 +68,7 @@ public class SignInController {
     }
 
     @PostMapping("signin")
-    public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String phoneNumber = request.getParameter(("phone"));
         String password = request.getParameter(("password"));
         String rememberMe = request.getParameter(("rememberMe"));
@@ -81,15 +89,13 @@ public class SignInController {
                 response.addCookie(cPass);
             }
 
-            HttpSession session = request.getSession();
-            session.setAttribute("user", acc);
+            session.setAttribute("accSession", acc);
 
             if (acc.getIsAdmin() == 1) {
-                response.sendRedirect("redirect:/ManagerProduct");
+                return "redirect:/ManagerProduct";
             } else {
-                response.sendRedirect("redirect:/home");
+                return"redirect:/";
             }
-            return "redirect:/home";
         } else {
             request.setAttribute("isLoginFail", 1);
             return "signin";

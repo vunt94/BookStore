@@ -32,7 +32,7 @@
                         USD
                     </a>
                     <c:choose>
-                        <c:when test="${accountSession != null}">
+                        <c:when test="${accSession != null}">
                             <a href="logout" class="flex-c-m trans-04 p-lr-25">Log out</a>
                         </c:when>
                         <c:otherwise>
