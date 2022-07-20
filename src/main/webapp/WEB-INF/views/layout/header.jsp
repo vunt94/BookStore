@@ -53,7 +53,7 @@
 
                         </li>
 
-                        <li class="${pagina.startsWith('/shop') ? 'active-menu' : ''}">
+                        <li class="${pagina.startsWith('/shop') || pagina.startsWith('/search') ? 'active-menu' : ''}">
                             <a href="/shop">Shop</a>
                         </li>
 
