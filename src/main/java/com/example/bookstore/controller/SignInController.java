@@ -101,7 +101,6 @@ public class SignInController {
                 response.addCookie(cPass);
             }
 
-
             session.setAttribute("user", acc);
             session.setAttribute("accId", acc.getID());
             if (acc.getIsAdmin() == 1) {
