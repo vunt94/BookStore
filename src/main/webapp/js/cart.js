@@ -82,3 +82,49 @@ function ajaxUpdateCart(listId, listQuantity) {
         }
     });
 }
+
+// $("#addToCart").click(function(event) {
+//     var id = $("#addToCart").attr("name");
+//     event.preventDefault();
+//     $.ajax({
+//         type : "POST",
+//         url : "addToCart",
+//         data : {'id' : id},
+//         success : function(result) {
+//
+//         },
+//         error : function(e) {
+//             alert("Error!")
+//             console.log("ERROR: ", e);
+//         }
+//     });
+// });
+
+$('#up').click(function (){
+    var numProduct = Number($('.quantity').val());
+    $('.quantity').val(numProduct + 1);
+    $('.quantity').attr("name", numProduct + 1);
+});
+
+$('#down').click(function (){
+    var numProduct = Number($('.quantity').val());
+    $('.quantity').val(numProduct - 1);
+    $('.quantity').attr("name", numProduct - 1);
+});
+
+function addToCart(event, id) {
+    event.preventDefault();
+    var quantity = $('.quantity').attr("name");
+    $.ajax({
+        type : "POST",
+        url : "addToCart",
+        data : {'pid' : id, 'pquantity' : quantity},
+        success : function(result) {
+
+        },
+        error : function(e) {
+            alert("Error!")
+            console.log("ERROR: ", e);
+        }
+    });
+}

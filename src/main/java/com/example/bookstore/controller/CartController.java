@@ -84,14 +84,20 @@ public class CartController {
         return new ResponseEntity<Object>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/checkout")
-    public String checkOut() {
-        List<Carts.Cart> list = new ArrayList<>();
-        list = (List<Carts.Cart>) session.getAttribute("listCart");
-
-
-        System.out.println(list.get(0).getQuantity());
-        return "index";
+    @PostMapping("/addToCart")
+    public String addToCart(@RequestParam("pid") String productId,
+                            @RequestParam("pquantity") String quan) {
+        short aid = Short.parseShort(session.getAttribute("accId").toString());
+        short quantity = Short.parseShort(quan);
+        short pid = Short.parseShort(productId);
+        Products.Product product = productService.getProductByID((int) pid);
+        if (cartService.isProductInCart(aid, pid) == false) {
+            cartService.addProductToCart(product, aid, quantity);
+        }
+        else {
+            cartService.updateQuantity(aid, pid, quantity);
+        }
+        return "redirect:/";
     }
 
 }
