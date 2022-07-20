@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,11 +23,14 @@ public class PaymentController {
     private ShipmentService shipmentService;
     @Autowired
     private OrderService orderService;
-
+    @Autowired
+    HttpSession session;
     @GetMapping("payment")
     public String index(HttpServletRequest request) {
     //  TODO: First time check
         // TODO: account from session
+        List<Carts.Cart> list = new ArrayList<>();
+        list = (List<Carts.Cart>) session.getAttribute("listCart");
         Accounts.Account acc = orderService.getAccountById(ORDER_DEMO_ID);
 
         // TODO: list orderdetails from cart
