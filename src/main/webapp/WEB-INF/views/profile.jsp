@@ -5,6 +5,8 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" type="text/css" href="css/profile.css"/>
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
     <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -68,7 +70,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="font-weight-bold text-center mt-2">Amelly</div>
+                <div class="font-weight-bold text-center mt-2">${userName}</div>
             </div>
             <div class="col-md-8 border-right">
                 <div class="p-3 py-5">
@@ -84,7 +86,7 @@
                                     type="text"
                                     class="form-control form-control-custom"
                                     placeholder="User name"
-                                    value=""
+                                    value="${userName}"
                                     name="userName"
                             />
                         </div>
@@ -94,25 +96,25 @@
                                     type="text"
                                     class="form-control form-control-custom"
                                     placeholder="Phone number"
-                                    value=""
+                                    value="${phone}"
                                     name="phoneNumber"
                             />
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label class="labels ml-2 labels--custom">Old Password</label>
+                            <label class="labels ml-2 labels--custom">Current Password</label>
                             <input
                                     type="text"
                                     class="form-control form-control-custom"
                                     value=""
-                                    placeholder="Old Password"
+                                    placeholder="Current Password"
                                     name="oldPassword"
                             />
                         </div>
                         <div class="col-md-6">
                             <label class="labels ml-2 labels--custom"
-                            >Confirm password</label
+                            >New password</label
                             >
                             <input
                                     type="text"
@@ -123,8 +125,15 @@
                             />
                         </div>
                     </div>
+                    <c:choose>
+                        <c:when test="${message != null}">
+                            <div class="alert-error">
+                                <p class="alert__content">Your current password is incorrect. Please check again!</p>
+                            </div>
+                        </c:when>
+                    </c:choose>
                     <div class="mt-5 text-right">
-                        <button class="btn btn--custom profile-button" type="submit">
+                        <button class="btn btn--custom profile-button " type="submit">
                             Save
                         </button>
                     </div>
