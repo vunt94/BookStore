@@ -113,13 +113,13 @@ public class JAXBParser {
         }
     }
 
-    public Accounts readListAccountFromXML() {
+    public List<Accounts.Account> readListAccountFromXML() {
         try {
             JAXBContext context = JAXBContext.newInstance(Accounts.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
             Accounts accounts =
                     (Accounts) unmarshaller.unmarshal(new File(constant.AccountXMLPath));
-            return accounts;
+            return accounts.getAccount();
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
@@ -137,6 +137,16 @@ public class JAXBParser {
 
         } catch (JAXBException e) {
             throw  new RuntimeException(e);
+        }
+    }
+
+    public void updateAccountXML (Accounts accounts) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Accounts.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.marshal(accounts, new File(constant.AccountXMLPath));
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
         }
     }
 

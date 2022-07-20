@@ -8,7 +8,7 @@
     </Account>
     <Account ID="2">
         <userName>Maria</userName>
-        <password>hahaha</password>
+        <password>1223</password>
         <phoneNumber>0147896325</phoneNumber>
         <isAdmin>0</isAdmin>
     </Account>

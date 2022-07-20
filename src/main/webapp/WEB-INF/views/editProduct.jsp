@@ -117,11 +117,11 @@
             </div>
             <div class="row">
                 <div class="col-25">
-                    <label class="col-md-4 control-label" for="image">Image</label>
+                    <label class="col-md-4 control-label">Image</label>
                 </div>
                 <div class="col-75">
                     <img src="images/book/${productDetail.image}" alt="IMG-PRODUCT" style="width: 20%">
-                    <input name="image" id="image" path="image" value="${productDetail.image}" />
+
 <%--                    <input id="image" path="image" name="image" value="c:url${productDetail.image}" required="" class="input-file" type="file">--%>
                 </div>
             </div>

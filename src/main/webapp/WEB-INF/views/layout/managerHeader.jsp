@@ -24,13 +24,14 @@
                         My Account
                     </a>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        EN
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        USD
-                    </a>
+                    <c:choose>
+                        <c:when test="${accSession != null}">
+                            <a href="/logout" class="flex-c-m trans-04 p-lr-25">Log out</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/signin" class="flex-c-m trans-04 p-lr-25">Log in</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>
@@ -46,7 +47,7 @@
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        <li class="active-menu">
+                        <li>
                             <a href="/">Home</a>
 
                         </li>
@@ -55,20 +56,24 @@
                             <a href="/shop">Shop</a>
                         </li>
 
-                        <li class="label1" data-label1="hot">
-                            <a href="shoping-cart.html">Features</a>
+                        <li>
+                            <a href="/payment-list">Payment History</a>
                         </li>
 
-                        <li id="test">
-                            <a href="#">Blog</a>
-                        </li>
+<%--                        <li class="label1" data-label1="hot">--%>
+<%--                            <a href="shoping-cart.html">Features</a>--%>
+<%--                        </li>--%>
+
+<%--                        <li id="test">--%>
+<%--                            <a href="#">Blog</a>--%>
+<%--                        </li>--%>
+
+<%--                        <li>--%>
+<%--                            <a href="about.html">About</a>--%>
+<%--                        </li>--%>
 
                         <li>
-                            <a href="about.html">About</a>
-                        </li>
-
-                        <li>
-                            <a href="/addProduct" style="color: #0c5460" class="flex-c-m trans-04 p-lr-25">
+                            <a href="/addProduct" style="color: #0c5460" class="flex-c-m trans-04 p-lr-25 active-menu">
                                 Create Product
                             </a>
                         </li>

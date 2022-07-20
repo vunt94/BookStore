@@ -9,8 +9,7 @@ import java.util.List;
 @Service
 public class SignInServiceImpl implements SignInService {
     private JAXBParser jaxbParser = new JAXBParser();
-    Accounts accounts = jaxbParser.readListAccountFromXML();
-    List<Accounts.Account> accountList = accounts.getAccount();
+    List<Accounts.Account> accountList = jaxbParser.readListAccountFromXML();
     @Override
     public boolean login(String phoneNumber, String password) {
         for (Accounts.Account acc : accountList) {
