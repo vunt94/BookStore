@@ -96,7 +96,7 @@ public class JAXBParser {
         try {
             JAXBContext context = JAXBContext.newInstance(Favorites.class);
             Marshaller marshaller = context.createMarshaller();
-            marshaller.marshal(favorites, new File(constant.SHIPMENT_XML_PATH));
+            marshaller.marshal(favorites, new File(constant.FavoriteXMLPath));
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

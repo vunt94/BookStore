@@ -18,4 +18,6 @@ public interface CartService {
     boolean isProductInCart(short aid, short pid);
 
     void updateQuantity(short aid, short pid, short quantity);
+
+    void deleteProductInCart(short aid, short pid);
 }

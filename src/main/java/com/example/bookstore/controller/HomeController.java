@@ -112,6 +112,16 @@ public class HomeController {
                 break;
             }
         }
+        // set data to wishlist
+        if (session.getAttribute("accId") != null) {
+            int accId = (int) session.getAttribute("accId");
+            List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
+            request.setAttribute("size", productService.getElementOfWishlistByPid(listPId).size());
+            request.setAttribute("listPidInWishlist", listPId);
+        }
+        else {
+            request.setAttribute("size", 0);
+        }
         request.setAttribute("lstRelated", lstRelated);
         Categories.Category category = categoryService.getCategoryByID(product.getCategoryId());
         request.setAttribute("categoryObj", category);

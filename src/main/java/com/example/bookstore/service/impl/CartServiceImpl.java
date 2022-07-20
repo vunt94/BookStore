@@ -51,13 +51,14 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public List<Carts.Cart> updateMaxQuantity(short accId, List<Carts.Cart> listCart, List<Short> listProductId) {
-        List<Carts.Cart> listCartByAid = getCartByAccId(accId);
-        for (Carts.Cart cart : listCartByAid) {
-            if (listProductId.contains(cart.getProductId())) {
+        Carts carts = jaxbParser.getCartFromXML();
+        for (Carts.Cart cart : carts.getCart()) {
+            if (listProductId.contains(cart.getProductId()) && accId == cart.getAccountId()) {
                 cart.setQuantity(productService.getAmountOfProduct(cart.getProductId()));
                 listCart.add(cart);
             }
         }
+        jaxbParser.writeCartToXML(carts);
         return listCart;
 
     }
@@ -101,5 +102,19 @@ public class CartServiceImpl implements CartService{
         }
         jaxbParser.writeCartToXML(carts);
     }
+
+    @Override
+    public void deleteProductInCart(short aid, short pid) {
+        Carts carts = jaxbParser.getCartFromXML();
+        for (int i = 0; i < carts.getCart().size(); i++) {
+            if (carts.getCart().get(i).getAccountId() == aid &&
+                carts.getCart().get(i).getProductId() == pid) {
+                carts.getCart().remove(i);
+                break;
+            }
+        }
+        jaxbParser.writeCartToXML(carts);
+    }
+
 
 }

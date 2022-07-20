@@ -156,6 +156,16 @@ public class ShopController {
                     .collect(Collectors.toList());
             request.setAttribute("pageNumbers", pageNumbers);
         }
+        // set data to wishlist
+        if (session.getAttribute("accId") != null) {
+            int accId = (int) session.getAttribute("accId");
+            List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
+            request.setAttribute("size", productService.getElementOfWishlistByPid(listPId).size());
+            request.setAttribute("listPidInWishlist", listPId);
+        }
+        else {
+            request.setAttribute("size", 0);
+        }
         request.setAttribute("lstCategory", categoryService.getAllCategory());
         request.setAttribute("categoryID", session.getAttribute("categoryID"));
         session.setAttribute("lstProduct", lstResult);
@@ -214,6 +224,16 @@ public class ShopController {
                     .boxed()
                     .collect(Collectors.toList());
             request.setAttribute("pageNumbers", pageNumbers);
+        }
+        // set data to wishlist
+        if (session.getAttribute("accId") != null) {
+            int accId = (int) session.getAttribute("accId");
+            List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
+            request.setAttribute("size", productService.getElementOfWishlistByPid(listPId).size());
+            request.setAttribute("listPidInWishlist", listPId);
+        }
+        else {
+            request.setAttribute("size", 0);
         }
         request.setAttribute("lstCategory", categoryService.getAllCategory());
         request.setAttribute("categoryID", session.getAttribute("categoryID"));

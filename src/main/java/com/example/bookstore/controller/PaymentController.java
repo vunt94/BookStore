@@ -1,6 +1,7 @@
 package com.example.bookstore.controller;
 
 import com.example.bookstore.entity.*;
+import com.example.bookstore.service.CartService;
 import com.example.bookstore.service.OrderService;
 import com.example.bookstore.service.ShipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class PaymentController {
     private ShipmentService shipmentService;
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private CartService cartService;
     @Autowired
     HttpSession session;
     @GetMapping("payment")
