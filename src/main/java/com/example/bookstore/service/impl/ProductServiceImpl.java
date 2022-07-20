@@ -74,6 +74,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Products.Product> getProductByName(List<Products.Product> lstProduct, String name) {
+        List<Products.Product> lstFilterByName = new ArrayList<>();
+        for (Products.Product product : lstProduct) {
+            if (product.getName().equals(name)) {
+                lstFilterByName.add(product);
+            }
+        }
+        return lstFilterByName;
+    }
+
+    @Override
     public List<Products.Product> getElementOfWishlistByPid(List<Short> listProductId) {
         List<Products.Product> listProductInWishlist = new ArrayList<>();
         List<Products.Product> listAllProduct = getAllProduct();
@@ -92,6 +103,43 @@ public class ProductServiceImpl implements ProductService {
             }
         }
         return null;
+    }
+
+    @Override
+    public Products.Product createNewProduct(Products.Product product) {
+
+        List<Products.Product> products = jaxbParser.getProductsByJAXB();
+        product.setID((short) (products.size() + 1));
+        products.add(product);
+        jaxbParser.writeProductToXML(new Products(products));
+        return product;
+    }
+
+    @Override
+    public List<Products.Product> updateProduct(Products.Product product) {
+        List<Products.Product> products = jaxbParser.getProductsByJAXB();
+        for(int i = 0; i < products.size(); i++) {
+            Products.Product u = products.get(i);
+            if(u.getID() == (product.getID())) {
+                products.set(i, product);
+            }
+        }
+        jaxbParser.writeProductToXML(new Products(products));
+        return products;
+    }
+
+    @Override
+    public List<Products.Product> deleteProduct(Products.Product product) {
+        List<Products.Product> products = jaxbParser.getProductsByJAXB();
+        for(int i = 0; i < products.size(); i++) {
+            Products.Product u = products.get(i);
+            if(u.getID() == (product.getID())) {
+                products.remove(u);
+            }
+        }
+        jaxbParser.writeProductToXML(new Products(products));
+        return products;
+
     }
 
 }

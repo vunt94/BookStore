@@ -15,6 +15,9 @@ import com.example.bookstore.entity.Products;
 
 import javax.xml.bind.*;
 import java.io.File;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class JAXBParser {
@@ -98,6 +101,16 @@ public class JAXBParser {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void writeProductToXML(Products products) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Products.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.marshal(products, new File("src/main/resources/xml/Products.xml"));
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Accounts readListAccountFromXML() {

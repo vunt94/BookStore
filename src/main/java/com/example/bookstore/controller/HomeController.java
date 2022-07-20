@@ -92,7 +92,7 @@ public class HomeController {
         }
         request.setAttribute("lstCategory", categoryService.getAllCategory());
         request.setAttribute("categoryID", cateId);
-
+        request.setAttribute("accSession", session.getAttribute("user"));
         return "index";
     }
 

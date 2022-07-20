@@ -20,18 +20,17 @@
                         Manager
                     </a>
 
-                    <a href="/profile" class="flex-c-m trans-04 p-lr-25">
+                    <a href="#" class="flex-c-m trans-04 p-lr-25">
                         My Account
                     </a>
 
-                    <c:choose>
-                        <c:when test="${accSession != null}">
-                            <a href="/logout" class="flex-c-m trans-04 p-lr-25">Log out</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="/signin" class="flex-c-m trans-04 p-lr-25">Log in</a>
-                        </c:otherwise>
-                    </c:choose>
+                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                        EN
+                    </a>
+
+                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                        USD
+                    </a>
                 </div>
             </div>
         </div>
@@ -45,15 +44,14 @@
                 </a>
 
                 <!-- Menu desktop -->
-                <c:set var="pagina" value="${requestScope['javax.servlet.forward.request_uri']}" />
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        <li class="${pagina.endsWith('/') ? 'active-menu' : ''}">
+                        <li class="active-menu">
                             <a href="/">Home</a>
 
                         </li>
 
-                        <li class="${pagina.startsWith('/shop') || pagina.startsWith('/search') ? 'active-menu' : ''}">
+                        <li>
                             <a href="/shop">Shop</a>
                         </li>
 
@@ -70,7 +68,9 @@
                         </li>
 
                         <li>
-                            <a href="contact.html">Contact</a>
+                            <a href="/addProduct" style="color: #0c5460" class="flex-c-m trans-04 p-lr-25">
+                                Create Product
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -87,11 +87,10 @@
                         <i id="shopping-cart" class="zmdi zmdi-shopping-cart"></i>
                     </a>
 
-                    <a id="${accId}"
-                       value="${size}"
+                    <a href="#"
                        class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-favorite-header-noti js-show-cart"
-                       data-favorite-noti="${size}" >
-                        <i ${accId != null ? 'onclick="getWishList()"' : ''} id="wishlistIcon" class="zmdi zmdi-favorite-outline"></i>
+                       data-favorite-noti="${size}">
+                        <i id="wishlistIcon" class="zmdi zmdi-favorite-outline"></i>
                     </a>
                 </div>
             </nav>
@@ -223,7 +222,5 @@
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
 
-    </script>
 </header>

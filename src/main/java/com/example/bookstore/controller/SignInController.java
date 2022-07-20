@@ -4,13 +4,11 @@ import com.example.bookstore.entity.Accounts;
 import com.example.bookstore.service.FavoriteService;
 import com.example.bookstore.service.ProductService;
 import com.example.bookstore.service.SignInService;
-import com.example.bookstore.service.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +18,10 @@ import java.util.List;
 
 @Controller
 public class SignInController {
+
+    @Autowired
+    private SignInService loginService;
+
     @Autowired
     private SignUpService registerService;
 
@@ -29,11 +31,15 @@ public class SignInController {
     @Autowired
     private ProductService productService;
 
+    HttpSession session;
     @Autowired
-    private SignInService loginService;
+    HttpServletRequest request;
+
+    @Autowired
+    HttpServletResponse response;
 
     @GetMapping("signin")
-    public String index(HttpServletRequest request, HttpServletResponse response) {
+    public String doGet() {
         //get cookie
         Cookie[] cookie = request.getCookies();
         String phone = "";
@@ -72,7 +78,7 @@ public class SignInController {
     }
 
     @PostMapping("signin")
-    public String doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String phoneNumber = request.getParameter(("phone"));
         String password = request.getParameter(("password"));
         String rememberMe = request.getParameter(("rememberMe"));
@@ -93,10 +99,13 @@ public class SignInController {
                 response.addCookie(cPass);
             }
 
-            HttpSession session = request.getSession();
             session.setAttribute("user", acc);
             session.setAttribute("accId", acc.getID());
-            return "redirect:/";
+            if (acc.getIsAdmin() == 1) {
+                return "redirect:/managerProduct";
+            } else {
+                return"redirect:/";
+            }
         } else {
             request.setAttribute("isLoginFail", 1);
             return "signin";

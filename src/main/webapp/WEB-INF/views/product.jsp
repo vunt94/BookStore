@@ -1,5 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %><%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,15 +73,17 @@
             </div>
 
             <!-- Search product -->
+            <form action="/search" method="post">
             <div class="dis-none panel-search w-full p-t-10 p-b-15">
                 <div class="bor8 dis-flex p-l-15">
                     <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
                         <i class="zmdi zmdi-search"></i>
                     </button>
 
-                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="searchProduct" placeholder="Search" value="${sessionScope.searchName}">
                 </div>
             </div>
+
 
             <!-- Filter -->
             <div class="dis-none panel-filter w-full p-t-10">
@@ -94,7 +96,7 @@
                         <ul>
                             <li class="p-b-6">
                                 <a href="#" class="filter-link stext-106 trans-04">
-                                    Default
+                                    <p name="defalt">Default</p>
                                 </a>
                             </li>
 
@@ -137,44 +139,41 @@
 
                         <ul>
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                <a href="/filterByPrice?indexPrice=0" class="filter-link stext-106 trans-04 filter-link-active">
                                     All
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="/filterByPrice?indexPrice=1" class="filter-link stext-106 trans-04">
                                     $0.00 - $50.00
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="/filterByPrice?indexPrice=2" class="filter-link stext-106 trans-04">
                                     $50.00 - $100.00
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="/filterByPrice?indexPrice=3" class="filter-link stext-106 trans-04">
                                     $100.00 - $150.00
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
-                                    $150.00 - $200.00
+                                <a href="/filterByPrice?indexPrice=4" class="filter-link stext-106 trans-04">
+                                    $150.00+
                                 </a>
                             </li>
 
-                            <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
-                                    $200.00+
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div class="row isotope-grid">
@@ -197,7 +196,7 @@
                                 </a>
 
                                 <span class="stext-105 cl3">
-									$${item.price}
+									$${item.price} <c:if test="${item.amount gt 0}"><span class="stext-105 cl3" style="color: green">In-stock</span></c:if><c:if test="${item.amount le 0}"><span class="stext-105 cl3" style="color: red">Out-stock</span></c:if>
 								</span>
                             </div>
 
@@ -223,7 +222,7 @@
                 </c:forEach>
             </ul>
         </nav>
-
+        </form>
     </div>
 </div>
 
