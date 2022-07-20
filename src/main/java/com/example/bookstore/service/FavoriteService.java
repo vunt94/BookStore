@@ -15,5 +15,7 @@ public interface FavoriteService {
 
     void writeNewWishlistToXML(Favorites favorites);
 
+    boolean isProductInWishlist (short productId, short accId);
+
 
 }

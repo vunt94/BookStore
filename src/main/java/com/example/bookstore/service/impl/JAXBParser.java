@@ -1,7 +1,6 @@
 package com.example.bookstore.service.impl;
 
-import com.example.bookstore.entity.Categories;
-import com.example.bookstore.entity.Products;
+import com.example.bookstore.entity.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -12,8 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.example.bookstore.Constant;
-import com.example.bookstore.entity.Accounts;
-import com.example.bookstore.entity.Favorites;
 import com.example.bookstore.entity.Products;
 
 import javax.xml.bind.*;
@@ -150,6 +147,18 @@ public class JAXBParser {
             Products products =
                     (Products) unmarshaller.unmarshal(new File(constant.ProductXMLPath));
             return products;
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Carts getCartFromXML() {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Carts.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Carts carts =
+                    (Carts) unmarshaller.unmarshal(new File(constant.CartXMLPath));
+            return carts;
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

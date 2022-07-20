@@ -51,4 +51,18 @@ public class FavoriteServiceImpl implements FavoriteService {
     public void writeNewWishlistToXML(Favorites favorites) {
         jaxbParser.writeFavoriteProductToXML(favorites);
     }
+
+    @Override
+    public boolean isProductInWishlist(short productId, short accId) {
+        Favorites favorites = jaxbParser.getListFavoriteFromXML();
+        for (int i = 0; i < favorites.getFavorite().size(); i++) {
+            Favorites.Favorite favorite = favorites.getFavorite().get(i);
+            short pid = favorite.getProductId();
+            short aid = favorite.getAccountId();
+            if (aid == accId && productId == pid) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

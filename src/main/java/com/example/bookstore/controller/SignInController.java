@@ -1,7 +1,10 @@
 package com.example.bookstore.controller;
 
 import com.example.bookstore.entity.Accounts;
+import com.example.bookstore.service.FavoriteService;
+import com.example.bookstore.service.ProductService;
 import com.example.bookstore.service.SignInService;
+import com.example.bookstore.service.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +15,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class SignInController {
 
     @Autowired
     private SignInService loginService;
+
+    @Autowired
+    private SignUpService registerService;
+
+    @Autowired
+    private FavoriteService favoriteService;
+
+    @Autowired
+    private ProductService productService;
 
     @Autowired
     HttpSession session;
@@ -88,8 +101,9 @@ public class SignInController {
                 response.addCookie(cPass);
             }
 
-            session.setAttribute("user", acc);
 
+            session.setAttribute("user", acc);
+            session.setAttribute("accId", acc.getID());
             if (acc.getIsAdmin() == 1) {
                 return "redirect:/managerProduct";
             } else {
