@@ -49,119 +49,124 @@
 </head>
 <body>
 <%@include file="layout/managerHeader.jsp" %>
-<div class="container rounded bg-white m-t-100 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="avatar" id="avatar">
-                <div id="preview">
-                    <img
-                            src="https://media.istockphoto.com/photos/funny-winking-kitten-picture-id1267021092?k=20&m=1267021092&s=612x612&w=0&h=yzwxZXklHn5NwDTgKmbq2Ojtg3pga6j8K3oT7lLneAY="
-                            id="avatar-image"
-                            class="avatar_img"
-                            id=""
-                    />
-                </div>
-                <div class="avatar_upload">
-                    <label class="upload_label"
-                    >Upload
-                        <input type="file" id="upload"/>
-                    </label>
-                </div>
-            </div>
-
-            <div class="font-weight-bold text-center mt-2">Amelly</div>
-        </div>
-        <div class="col-md-8 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-2 bl-color">
-                    <h4 class="text-right">Profile Settings</h4>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-md-12">
-                        <label class="labels ml-2 labels--custom">Full name</label>
-                        <input
-                                type="text"
-                                class="form-control form-control-custom"
-                                placeholder="Full name"
-                                value=""
+<form action="profile" method="POST">
+    <div class="container rounded bg-white m-t-100 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="avatar" id="avatar">
+                    <div id="preview">
+                        <img
+                                src="https://media.istockphoto.com/photos/funny-winking-kitten-picture-id1267021092?k=20&m=1267021092&s=612x612&w=0&h=yzwxZXklHn5NwDTgKmbq2Ojtg3pga6j8K3oT7lLneAY="
+                                id="avatar-image"
+                                class="avatar_img"
                         />
                     </div>
+                    <div class="avatar_upload">
+                        <label class="upload_label"
+                        >Upload
+                            <input type="file" id="upload"/>
+                        </label>
+                    </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-md-6">
-                        <label class="labels ml-2 labels--custom">Date of birth</label>
-                        <div class="input-group">
+
+                <div class="font-weight-bold text-center mt-2">Amelly</div>
+            </div>
+            <div class="col-md-8 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-2 bl-color">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <label class="labels ml-2 labels--custom">Full name</label>
                             <input
-                                    class="form-control form-control-custom pr-20"
-                                    type="date"
-                                    value="date1"
-                                    id="example-input"
+                                    type="text"
+                                    class="form-control form-control-custom"
+                                    placeholder="Full name"
+                                    name="fullName"
                             />
-                            <span class="input-group-append ml-n4 z-index-1">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <label class="labels ml-2 labels--custom">Date of birth</label>
+                            <div class="input-group">
+                                <input
+                                        class="form-control form-control-custom pr-20"
+                                        type="date"
+                                        value="date1"
+                                        id="example-input"
+                                        name="dateOfBirth"
+                                />
+                                <span class="input-group-append ml-n4 z-index-1">
                     <button class="btn btn-light border-left-0 border bg-white">
                       <i class="fa fa-calendar-alt"></i>
                     </button>
                   </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels ml-2 labels--custom">PhoneNumber</label>
+                            <input
+                                    type="text"
+                                    class="form-control form-control-custom"
+                                    placeholder="Phone number"
+                                    value=""
+                                    name="phoneNumber"
+                            />
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="labels ml-2 labels--custom">PhoneNumber</label>
-                        <input
-                                type="text"
-                                class="form-control form-control-custom"
-                                placeholder="Phone number"
-                                value=""
-                        />
-                    </div>
-                </div>
 
-                <div
-                        class="d-flex justify-content-between align-items-center mb-2 mt-4 bl-color"
-                >
-                    <h4 class="text-right">Account Settings</h4>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <label class="labels ml-2 labels--custom">User name</label>
-                        <input
-                                type="text"
-                                class="form-control form-control-custom"
-                                placeholder="User name"
-                                value=""
-                        />
+                    <div
+                            class="d-flex justify-content-between align-items-center mb-2 mt-4 bl-color"
+                    >
+                        <h4 class="text-right">Account Settings</h4>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <label class="labels ml-2 labels--custom">Password</label>
-                        <input
-                                type="text"
-                                class="form-control form-control-custom"
-                                value=""
-                                placeholder="Password"
-                        />
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="labels ml-2 labels--custom">User name</label>
+                            <input
+                                    type="text"
+                                    class="form-control form-control-custom"
+                                    placeholder="User name"
+                                    value=""
+                            />
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="labels ml-2 labels--custom"
-                        >Confirm password</label
-                        >
-                        <input
-                                type="text"
-                                class="form-control form-control-custom"
-                                value=""
-                                placeholder="Confirm Password"
-                        />
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="labels ml-2 labels--custom">Old Password</label>
+                            <input
+                                    type="text"
+                                    class="form-control form-control-custom"
+                                    value=""
+                                    placeholder="Old Password"
+                                    name="oldPassword"
+                            />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels ml-2 labels--custom"
+                            >Confirm password</label
+                            >
+                            <input
+                                    type="text"
+                                    class="form-control form-control-custom"
+                                    value=""
+                                    placeholder="New Password"
+                                    name="newPassword"
+                            />
+                        </div>
                     </div>
-                </div>
-                <div class="mt-5 text-right">
-                    <button class="btn btn--custom profile-button" type="button">
-                        Save
-                    </button>
+                    <div class="mt-5 text-right">
+                        <button class="btn btn--custom profile-button" type="submit">
+                            Save
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 <script>
     var upload = document.getElementById("upload");
     var preview = document.getElementById("preview");
