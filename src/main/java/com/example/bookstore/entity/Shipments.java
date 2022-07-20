@@ -117,7 +117,6 @@ public class Shipments {
         "shippingType"
     })
     public static class Shipment {
-
         @XmlSchemaType(name = "unsignedByte")
         protected short orderId;
         @XmlElement(required = true)
@@ -137,6 +136,7 @@ public class Shipments {
         public short getOrderId() {
             return orderId;
         }
+
 
         /**
          * Sets the value of the orderId property.
