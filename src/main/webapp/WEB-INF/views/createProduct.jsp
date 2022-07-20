@@ -52,7 +52,7 @@
     <div class="content__form">
 
 
-        <form action="${add_product_url}" method="post" modelAttribute="product">
+        <form action="${add_product_url}" onclick=" myFunction()" method="post" modelAttribute="product">
             <div class="row">
                 <div class="col-25">
                     <label>Product Name</label>
@@ -128,7 +128,7 @@
                 </div>
             </div>
             <div class="row f-l-end">
-                <input type="submit" onclick=" myFunction()" value="Submit">
+                <input type="submit" value="Submit">
             </div>
         </form>
     </div>
@@ -182,16 +182,17 @@
 <script src="js/main.js"></script>
 <script>
     function myFunction() {
+        console.log("aaabc")
         // Get the value of the input field with id="numb"
         let x = document.getElementById("amount").value;
         let y = document.getElementById("price").value;
         let text;
-        if (isNaN(x) || x < 1 ) {
+        if (x < 1 || x > 32000 ) {
             text = "Input not valid";
             document.getElementById("amountError").innerHTML = text;
             return false;
         }
-        if (isNaN(y) || y < 1 ) {
+        if ( y < 1 || y > 32000 ) {
             text = "Input not valid";
             document.getElementById("priceError").innerHTML = text;
             return false;
