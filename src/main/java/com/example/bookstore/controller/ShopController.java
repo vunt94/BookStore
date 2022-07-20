@@ -122,17 +122,24 @@ public class ShopController {
         int currentPage = 1;
         int pageSize = 4;
         HttpSession session = request.getSession();
+        String cateId = (String) session.getAttribute("categoryID");
         List<Products.Product> lst = (List<Products.Product>) session.getAttribute("lstProduct");
+        if(lst == null || lst.size() <= 0){
+            if (cateId == null || cateId.equals("0")) {
+                lst = productService.getAllProduct();
+            } else {
+                lst = productService.getProductByCategoryID(Integer.parseInt(cateId));
+            }
+        }
         List<Products.Product> lstResult = new ArrayList<Products.Product>();
         if (name != "") {
-            lst = (List<Products.Product>) session.getAttribute("lstProduct");
             for (int i = 0; i < lst.size(); i++) {
                 if (lst.get(i).getName().contains(name)) {
                     lstResult.add(lst.get(i));
                 }
             }
         } else {
-            String cateId = (String) session.getAttribute("categoryID");
+
             if (cateId == null || cateId.equals("0")) {
                 lst = productService.getAllProduct();
             } else {
