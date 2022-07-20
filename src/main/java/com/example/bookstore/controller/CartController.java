@@ -84,14 +84,12 @@ public class CartController {
         return new ResponseEntity<Object>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/checkout")
-    public String checkOut() {
-        List<Carts.Cart> list = new ArrayList<>();
-        list = (List<Carts.Cart>) session.getAttribute("listCart");
-
-
-        System.out.println(list.get(0).getQuantity());
-        return "index";
+    @PostMapping("/addToCart")
+    public ResponseEntity<Object> addToCart(@RequestParam(name="id") String pid) {
+        short aid = (short) session.getAttribute("accId");
+        short productId = Short.parseShort(pid);
+        Products.Product product = productService.getProductByID(productId);
+        return null;
     }
 
 }

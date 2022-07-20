@@ -164,6 +164,16 @@ public class JAXBParser {
         }
     }
 
+    public void writeCartToXML(Carts carts) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Carts.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.marshal(carts, new File(constant.CartXMLPath));
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 }

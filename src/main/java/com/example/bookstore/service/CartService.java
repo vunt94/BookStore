@@ -13,4 +13,6 @@ public interface CartService {
 
     List<Carts.Cart> updateMaxQuantity(short accId, List<Carts.Cart> listCart, List<Short> listProductId);
 
+    void addProductToCart(Products.Product product, short aid);
+
 }

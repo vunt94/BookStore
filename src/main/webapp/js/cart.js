@@ -82,3 +82,32 @@ function ajaxUpdateCart(listId, listQuantity) {
         }
     });
 }
+
+$("#addToCart").click(function(event) {
+    var id = $("#addToCart").attr("name");
+    event.preventDefault();
+    $.ajax({
+        type : "POST",
+        url : "addToCart",
+        data : {'id' : id},
+        success : function(result) {
+
+        },
+        error : function(e) {
+            alert("Error!")
+            console.log("ERROR: ", e);
+        }
+    });
+});
+
+function updatePriceInDetail(productId, status) {
+    if (status == 'down') {
+        var numProduct = Number($('#' + productId).val());
+        if (numProduct > 0) $('#' + productId).val(numProduct - 1);
+    }
+    else {
+        var numProduct = Number($('#' + productId).val());
+        $('#' + productId).val(numProduct + 1);
+    }
+
+}

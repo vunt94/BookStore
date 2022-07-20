@@ -62,4 +62,20 @@ public class CartServiceImpl implements CartService{
 
     }
 
+    @Override
+    public void addProductToCart(Products.Product product, short aid) {
+        Carts carts = jaxbParser.getCartFromXML();
+        Carts.Cart cart = new Carts.Cart();
+
+        cart.setProductId(product.getID());
+        cart.setAccountId(aid);
+        cart.setImage(product.getImage());
+        cart.setName(product.getName());
+        cart.setPrice(product.getPrice());
+//        cart.setQuantity();
+
+        carts.getCart().add(cart);
+        jaxbParser.writeCartToXML(carts);
+    }
+
 }
