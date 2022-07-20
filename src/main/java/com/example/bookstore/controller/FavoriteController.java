@@ -61,6 +61,7 @@ public class FavoriteController {
         Favorites favorites = favoriteService.deleteProductInWishlist(Integer.parseInt(id), aid);
 
         favoriteService.writeNewWishlistToXML(favorites);
+
         List<Short> listPId = favoriteService.getListProductIdByAccId(aid);
         List<Products.Product> wishlist = productService.getElementOfWishlistByPid(listPId);
         ServiceRespone<List<Products.Product>> response = new ServiceRespone<>("success", wishlist);
@@ -74,11 +75,45 @@ public class FavoriteController {
         short accId = Short.parseShort(session.getAttribute("accId").toString());
         favorite.setProductId(Short.parseShort(pid));
         favorite.setAccountId(accId);
+
         favoriteService.addProductToWishList(favorite);
+
         List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
         List<Products.Product> wishlist = productService.getElementOfWishlistByPid(listPId);
         ServiceRespone<List<Products.Product>> response = new ServiceRespone<>("success", wishlist);
         return new ResponseEntity<Object>(response, HttpStatus.OK);
     }
+
+    @PostMapping("/checkExistProductInWishlist")
+    public ResponseEntity<Object> checkExistProductInWishlist(@RequestParam(name="id") String pid,
+                                                       HttpSession session) {
+        String status = "";
+        short accId = Short.parseShort(session.getAttribute("accId").toString());
+        short productId = Short.parseShort(pid);
+        boolean isInWishlist = favoriteService.isProductInWishlist(productId, accId);
+        if (isInWishlist) {
+            status = "success";
+            Favorites favorites = favoriteService.deleteProductInWishlist((int) productId, (int) accId);
+            favoriteService.writeNewWishlistToXML(favorites);
+        }
+        else {
+            status = "fail";
+            Favorites.Favorite favorite = new Favorites.Favorite();
+            favorite.setProductId(productId);
+            favorite.setAccountId(accId);
+            favoriteService.addProductToWishList(favorite);
+        }
+        List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
+        List<Products.Product> wishlist = productService.getElementOfWishlistByPid(listPId);
+        ServiceRespone<List<Products.Product>> response = new ServiceRespone<>(status, wishlist);
+        return new ResponseEntity<Object>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/sendToLogin")
+    public String sendToLogin() {
+        System.out.println("here");
+        return "signin";
+    }
+
 
 }
