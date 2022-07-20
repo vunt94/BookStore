@@ -15,10 +15,7 @@ public class SignUpServiceImpl implements SignUpService {
 
     @Override
     public void registerAccount(Accounts.Account newAccount) {
-
-        Accounts accounts = jaxbParser.readListAccountFromXML();
         accounts.getAccount().add(newAccount);
-
         jaxbParser.writeAccountToXML(newAccount);
     }
 

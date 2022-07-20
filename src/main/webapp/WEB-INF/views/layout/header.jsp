@@ -20,23 +20,16 @@
                         Manager
                     </a>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                    <a href="/profile" class="flex-c-m trans-04 p-lr-25">
                         My Account
                     </a>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        EN
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        USD
-                    </a>
                     <c:choose>
                         <c:when test="${accSession != null}">
-                            <a href="logout" class="flex-c-m trans-04 p-lr-25">Log out</a>
+                            <a href="/logout" class="flex-c-m trans-04 p-lr-25">Log out</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="signin" class="flex-c-m trans-04 p-lr-25">Log in</a>
+                            <a href="/signin" class="flex-c-m trans-04 p-lr-25">Log in</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
