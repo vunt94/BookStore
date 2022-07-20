@@ -43,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
         return lstFilterByCateID;
     }
 
+    @Override
     public Page<Products.Product> findPaginated(Pageable pageable, List<Products.Product> lstProduct) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
@@ -60,6 +61,17 @@ public class ProductServiceImpl implements ProductService {
                 = new PageImpl<Products.Product>(list, PageRequest.of(currentPage, pageSize), lstProduct.size());
 
         return productPage;
+    }
+
+    @Override
+    public List<Products.Product> getProductByName(List<Products.Product> lstProduct, String name) {
+        List<Products.Product> lstFilterByName = new ArrayList<>();
+        for (Products.Product product : lstProduct) {
+            if (product.getName().equals(name)) {
+                lstFilterByName.add(product);
+            }
+        }
+        return lstFilterByName;
     }
 
     @Override

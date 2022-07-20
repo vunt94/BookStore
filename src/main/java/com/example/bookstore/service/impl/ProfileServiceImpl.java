@@ -3,10 +3,11 @@ package com.example.bookstore.service.impl;
 import com.example.bookstore.entity.Accounts;
 import com.example.bookstore.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public class ProfileServiceImpl implements ProfileService {
     private JAXBParser jaxbParser = new JAXBParser();
     Accounts accounts = jaxbParser.readListAccountFromXML();
