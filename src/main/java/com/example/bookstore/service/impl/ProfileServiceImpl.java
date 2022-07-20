@@ -14,8 +14,8 @@ public class ProfileServiceImpl implements ProfileService {
     List<Accounts.Account> accountList = accounts.getAccount();
 
     @Override
-    public boolean checkConfirmPassWord(String userID ,String oldPassword) {
-        Accounts.Account acc = getAccountById(userID);
+    public boolean checkConfirmPassWord(String userName ,String oldPassword) {
+        Accounts.Account acc = getAccountById(userName);
         if(acc.getPassword().equals(oldPassword)){
             return true;
         }
@@ -28,9 +28,9 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public Accounts.Account getAccountById(String id) {
+    public Accounts.Account getAccountById(String userName) {
         for (Accounts.Account acc : accountList) {
-            if(id.equals(acc.getID())) {
+            if(userName.equals(acc.getUserName())) {
                 return acc;
             }
         }
