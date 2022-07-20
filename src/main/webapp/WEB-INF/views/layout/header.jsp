@@ -39,14 +39,15 @@
                 </a>
 
                 <!-- Menu desktop -->
+                <c:set var="pagina" value="${requestScope['javax.servlet.forward.request_uri']}" />
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        <li class="active-menu">
+                        <li class="${pagina.endsWith('/') ? 'active-menu' : ''}">
                             <a href="/">Home</a>
 
                         </li>
 
-                        <li>
+                        <li class="${pagina.startsWith('/shop') ? 'active-menu' : ''}">
                             <a href="/shop">Shop</a>
                         </li>
 
