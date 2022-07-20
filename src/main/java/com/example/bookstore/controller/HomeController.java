@@ -81,10 +81,15 @@ public class HomeController {
                     .collect(Collectors.toList());
             request.setAttribute("pageNumbers", pageNumbers);
         }
-        session.setAttribute("accId", 4);
-        int accId = (int) session.getAttribute("accId");
-        List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
-        request.setAttribute("size", productService.getElementOfWishlistByPid(listPId).size());
+        if (session.getAttribute("accId") != null) {
+            int accId = Integer.parseInt(session.getAttribute("accId").toString());
+            List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
+            request.setAttribute("listPidInWishlist", listPId);
+            request.setAttribute("size", productService.getElementOfWishlistByPid(listPId).size());
+        }
+        else {
+            request.setAttribute("size", 0);
+        }
         request.setAttribute("lstCategory", categoryService.getAllCategory());
         request.setAttribute("categoryID", cateId);
 

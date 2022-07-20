@@ -1,3 +1,24 @@
+const  URL_PATH = "http://localhost:9420/signin";
+
+function updatePrice(productId, price, status) {
+    $('#clickToCheckout').addClass('hid').removeClass('show');
+   if (status == 'down') {
+       var numProduct = Number($('#' + productId).val());
+       // $('.btn-num-product-down').next().val(numProduct - 1);
+       $('#' + productId).val(numProduct - 1);
+       $('#' + productId).attr("name", numProduct - 1);
+       $('#totalPrice-' + productId).html("$" + (numProduct - 1) * price);
+   }
+   else {
+       var numProduct = Number($('#' + productId).val());
+       $('#' + productId).val(numProduct + 1);
+       $('#' + productId).attr("name", numProduct + 1);
+       // $('.btn-num-product-up').prev().val(numProduct + 1);
+       $('#totalPrice-' + productId).html("$" + (numProduct + 1) * price);
+   }
+
+}
+
 (function ($) {
     "use strict";
 
@@ -192,7 +213,9 @@
     [ Cart ]*/
 
     $('.js-show-cart').on('click',function(){
-        $('.js-panel-cart').addClass('show-header-cart');
+        if ($('.js-show-cart').attr('id') != '') {
+            $('.js-panel-cart').addClass('show-header-cart');
+        }
     });
 
     $('.js-hide-cart').on('click',function(){
@@ -210,16 +233,25 @@
     });
 
     /*==================================================================
-    [ +/- num product ]*/
-    $('.btn-num-product-down').on('click', function(){
-        var numProduct = Number($(this).next().val());
-        if(numProduct > 0) $(this).next().val(numProduct - 1);
+    [ Favorite ]*/
+    $('.js-show-cart').on('click', function () {
+        if ($('.js-show-cart').attr('id') == '') {
+            location.replace(URL_PATH);
+        }
     });
 
-    $('.btn-num-product-up').on('click', function(){
-        var numProduct = Number($(this).prev().val());
-        $(this).prev().val(numProduct + 1);
-    });
+    /*==================================================================
+    [ +/- num product ]*/
+    // $('.btn-num-product-down').on('click', function(){
+    //     var numProduct = Number($(this).next().val());
+    //     if(numProduct > 0) $(this).next().val(numProduct - 1);
+    // });
+    //
+    // $('.btn-num-product-up').on('click', function(){
+    //     var numProduct = Number($(this).prev().val());
+    //     $(this).prev().val(numProduct + 1);
+    //     updatePrice()
+    // });
 
     /*==================================================================
     [ Rating ]*/

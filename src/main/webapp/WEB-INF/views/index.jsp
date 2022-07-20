@@ -325,7 +325,9 @@
                         </div>
 
                         <div class="block2-txt-child2 flex-r p-t-3">
-                            <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                            <a id="${item.ID}" onclick="isProductInWishlist(event,${item.ID})"
+                               href="${accId != null ? '#' : '/signin'}"
+                               class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 ${listPidInWishlist.contains(item.ID) ? "js-addedwish-b2" : ""}">
                                 <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
                                 <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
                             </a>
@@ -477,6 +479,7 @@
 
 <!--===============================================================================================-->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!--===============================================================================================-->
 <script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -526,24 +529,19 @@
         e.preventDefault();
     });
 
-    $('.js-addwish-b2').each(function() {
+    $('.js-addwish-b2').each(function(){
         var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-        $(this).on('click', function() {
-            swal(nameProduct, "is added to wishlist !", "success");
-
-            $(this).addClass('js-addedwish-b2');
-            $(this).off('click');
-        });
-    });
-
-    $('.js-addwish-detail').each(function() {
-        var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-        $(this).on('click', function() {
-            swal(nameProduct, "is added to wishlist !", "success");
-
-            $(this).addClass('js-addedwish-detail');
-            $(this).off('click');
+        $(this).on('click', function(){
+            if ($('.js-addwish-b2').attr('href') == '#') {
+                if ($(this).hasClass('js-addedwish-b2')) {
+                    swal(nameProduct, "is deleted from wishlist !", "success");
+                    $(this).removeClass('js-addedwish-b2');
+                }
+                else {
+                    swal(nameProduct, "is added to wishlist !", "success");
+                    $(this).addClass('js-addedwish-b2');
+                }
+            }
         });
     });
 
@@ -576,7 +574,7 @@
 <!--===============================================================================================-->
 <script src="js/main.js"></script>
 <script src="js/favorite.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 </body>
 

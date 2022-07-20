@@ -19,4 +19,6 @@ public interface ProductService {
 
     List<Products.Product> getProductByCategoryID(int cateID);
 
+    short getAmountOfProduct (short productId);
+
 }

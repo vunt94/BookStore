@@ -1,1 +1,61 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Accounts><Account ID="1"><userName>admin</userName><password>12345</password><phoneNumber>0123456789</phoneNumber><isAdmin>1</isAdmin></Account><Account ID="2"><userName>Maria</userName><password>hahaha</password><phoneNumber>0147896325</phoneNumber><isAdmin>0</isAdmin></Account><Account ID="3"><userName>Tom</userName><password>tomtomtom</password><phoneNumber>012369874</phoneNumber><isAdmin>0</isAdmin></Account><Account ID="4"><userName>Denish</userName><password>hihihi</password><phoneNumber>034795164</phoneNumber><isAdmin>0</isAdmin></Account><Account ID="7"><userName>Anna</userName><password>33333</password><phoneNumber>037219823</phoneNumber><isAdmin>0</isAdmin></Account><Account ID="8"><userName>Mod</userName><password>12222</password><phoneNumber>012432545</phoneNumber><isAdmin>0</isAdmin></Account><Account ID="9"><userName>KimAnh</userName><password>12345</password><phoneNumber>1234567</phoneNumber><isAdmin>0</isAdmin></Account><Account ID="10"><userName>John</userName><password>12345</password><phoneNumber>094325435</phoneNumber><isAdmin>0</isAdmin></Account><Account ID="12"><userName>HuyenPT</userName><password>0383683363</password><isAdmin>0</isAdmin></Account><Account ID="13"><userName>Hoang Anh</userName><phoneNumber>038899445</phoneNumber><isAdmin>0</isAdmin></Account></Accounts>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Accounts>
+    <Account ID="1">
+        <userName>admin</userName>
+        <password>12345</password>
+        <phoneNumber>0123456789</phoneNumber>
+        <isAdmin>1</isAdmin>
+    </Account>
+    <Account ID="2">
+        <userName>Maria</userName>
+        <password>hahaha</password>
+        <phoneNumber>0147896325</phoneNumber>
+        <isAdmin>0</isAdmin>
+    </Account>
+    <Account ID="3">
+        <userName>Tom</userName>
+        <password>tomtomtom</password>
+        <phoneNumber>012369874</phoneNumber>
+        <isAdmin>0</isAdmin>
+    </Account>
+    <Account ID="4">
+        <userName>Denish</userName>
+        <password>hihihi</password>
+        <phoneNumber>034795164</phoneNumber>
+        <isAdmin>0</isAdmin>
+    </Account>
+    <Account ID="7">
+        <userName>Anna</userName>
+        <password>33333</password>
+        <phoneNumber>037219823</phoneNumber>
+        <isAdmin>0</isAdmin>
+    </Account>
+    <Account ID="8">
+        <userName>Mod</userName>
+        <password>12222</password>
+        <phoneNumber>012432545</phoneNumber>
+        <isAdmin>0</isAdmin>
+    </Account>
+    <Account ID="9">
+        <userName>KimAnh</userName>
+        <password>12345</password>
+        <phoneNumber>1234567</phoneNumber>
+        <isAdmin>0</isAdmin>
+    </Account>
+    <Account ID="10">
+        <userName>John</userName>
+        <password>12345</password>
+        <phoneNumber>094325435</phoneNumber>
+        <isAdmin>0</isAdmin>
+    </Account>
+    <Account ID="12">
+        <userName>HuyenPT</userName>
+        <password>0383683363</password>
+        <isAdmin>0</isAdmin>
+    </Account>
+    <Account ID="13">
+        <userName>Hoang Anh</userName>
+        <phoneNumber>038899445</phoneNumber>
+        <isAdmin>0</isAdmin>
+    </Account>
+</Accounts>

@@ -1,6 +1,8 @@
 package com.example.bookstore.controller;
 
 import com.example.bookstore.entity.Accounts;
+import com.example.bookstore.service.FavoriteService;
+import com.example.bookstore.service.ProductService;
 import com.example.bookstore.service.SignInService;
 import com.example.bookstore.service.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class SignInController {
     @Autowired
     private SignUpService registerService;
+
+    @Autowired
+    private FavoriteService favoriteService;
+
+    @Autowired
+    private ProductService productService;
 
     @Autowired
     private SignInService loginService;
@@ -86,13 +95,8 @@ public class SignInController {
 
             HttpSession session = request.getSession();
             session.setAttribute("user", acc);
-
-            if (acc.getIsAdmin() == 1) {
-                response.sendRedirect("redirect:/ManagerProduct");
-            } else {
-                response.sendRedirect("redirect:/home");
-            }
-            return "redirect:/home";
+            session.setAttribute("accId", acc.getID());
+            return "redirect:/";
         } else {
             request.setAttribute("isLoginFail", 1);
             return "signin";

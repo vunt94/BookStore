@@ -1,6 +1,7 @@
 package com.example.bookstore.controller;
 
 import com.example.bookstore.entity.Products;
+import com.example.bookstore.service.FavoriteService;
 import com.example.bookstore.service.impl.CategoryServiceImpl;
 import com.example.bookstore.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,6 +33,12 @@ public class ShopController {
 
     @Autowired
     CategoryServiceImpl categoryService;
+
+    @Autowired
+    FavoriteService favoriteService;
+
+    @Autowired
+    HttpSession session;
 
 //    @GetMapping("/shop")
 //    public String showShop(@RequestParam(name = "cateId",required = false) String cateId) {
@@ -65,6 +73,15 @@ public class ShopController {
                     .boxed()
                     .collect(Collectors.toList());
             request.setAttribute("pageNumbers", pageNumbers);
+        }
+        if (session.getAttribute("accId") != null) {
+            int accId = (int) session.getAttribute("accId");
+            List<Short> listPId = favoriteService.getListProductIdByAccId(accId);
+            request.setAttribute("size", productService.getElementOfWishlistByPid(listPId).size());
+            request.setAttribute("listPidInWishlist", listPId);
+        }
+        else {
+            request.setAttribute("size", 0);
         }
         request.setAttribute("lstCategory", categoryService.getAllCategory());
         request.setAttribute("categoryID", cateId);
