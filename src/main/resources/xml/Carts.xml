@@ -1,0 +1,26 @@
+<Carts>
+    <Cart>
+        <accountId>4</accountId>
+        <productId>3</productId>
+        <name>To Kill A Mockingbird</name>
+        <quantity>2</quantity>
+        <image>ToKillAMockingbird.jpg</image>
+        <price>69</price>
+    </Cart>
+    <Cart>
+        <accountId>4</accountId>
+        <productId>2</productId>
+        <name>The Lord of the Rings</name>
+        <quantity>3</quantity>
+        <image>TheLordOfTheRings.jpg</image>
+        <price>60</price>
+    </Cart>
+    <Cart>
+        <accountId>3</accountId>
+        <productId>5</productId>
+        <name>The Hobbit</name>
+        <quantity>3</quantity>
+        <image>TheHobbit.jpg</image>
+        <price>100</price>
+    </Cart>
+</Carts>
