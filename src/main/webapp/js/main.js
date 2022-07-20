@@ -1,13 +1,19 @@
-const  URL_PATH = "http://localhost:9420/signin";
+const  URL_PATH = "http://localhost:1234/signin";
 
 function updatePrice(productId, price, status) {
     $('#clickToCheckout').addClass('hid').removeClass('show');
    if (status == 'down') {
        var numProduct = Number($('#' + productId).val());
        // $('.btn-num-product-down').next().val(numProduct - 1);
-       $('#' + productId).val(numProduct - 1);
-       $('#' + productId).attr("name", numProduct - 1);
-       $('#totalPrice-' + productId).html("$" + (numProduct - 1) * price);
+       if ((numProduct - 1) == 0) {
+           deleteProductInCart(productId);
+       }
+       else {
+           $('#' + productId).val(numProduct - 1);
+           $('#' + productId).attr("name", numProduct - 1);
+           $('#totalPrice-' + productId).html("$" + (numProduct - 1) * price);
+       }
+
    }
    else {
        var numProduct = Number($('#' + productId).val());

@@ -100,4 +100,14 @@ public class CartController {
         return "redirect:/";
     }
 
+    @PostMapping("/deleteProductInCart")
+    public ResponseEntity<Object> deleteProductInCart(@RequestParam("pid") String productId) {
+        short aid = Short.parseShort(session.getAttribute("accId").toString());
+        short pid = Short.parseShort(productId);
+        cartService.deleteProductInCart(aid, pid);
+        List<Carts.Cart> listCart = cartService.getCartByAccId(aid);
+        ServiceRespone<List<Carts.Cart>> response = new ServiceRespone<>("success", listCart);
+        return new ResponseEntity<Object>(response, HttpStatus.OK);
+    }
+
 }
