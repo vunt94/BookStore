@@ -48,7 +48,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<%@include file="layout/managerHeader.jsp" %>
+<%@include file="layout/header.jsp" %>
 <form action="profile" method="POST">
     <div class="container rounded bg-white m-t-100 mb-5">
         <div class="row">
@@ -68,42 +68,25 @@
                         </label>
                     </div>
                 </div>
-
                 <div class="font-weight-bold text-center mt-2">Amelly</div>
             </div>
             <div class="col-md-8 border-right">
                 <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-2 bl-color">
-                        <h4 class="text-right">Profile Settings</h4>
+                    <div
+                            class="d-flex justify-content-between align-items-center mb-2 mt-4 bl-color"
+                    >
+                        <h4 class="text-right">Account Settings</h4>
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-md-12">
-                            <label class="labels ml-2 labels--custom">Full name</label>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="labels ml-2 labels--custom">User name</label>
                             <input
                                     type="text"
                                     class="form-control form-control-custom"
-                                    placeholder="Full name"
-                                    name="fullName"
+                                    placeholder="User name"
+                                    value=""
+                                    name="userName"
                             />
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <label class="labels ml-2 labels--custom">Date of birth</label>
-                            <div class="input-group">
-                                <input
-                                        class="form-control form-control-custom pr-20"
-                                        type="date"
-                                        value="date1"
-                                        id="example-input"
-                                        name="dateOfBirth"
-                                />
-                                <span class="input-group-append ml-n4 z-index-1">
-                    <button class="btn btn-light border-left-0 border bg-white">
-                      <i class="fa fa-calendar-alt"></i>
-                    </button>
-                  </span>
-                            </div>
                         </div>
                         <div class="col-md-6">
                             <label class="labels ml-2 labels--custom">PhoneNumber</label>
@@ -113,23 +96,6 @@
                                     placeholder="Phone number"
                                     value=""
                                     name="phoneNumber"
-                            />
-                        </div>
-                    </div>
-
-                    <div
-                            class="d-flex justify-content-between align-items-center mb-2 mt-4 bl-color"
-                    >
-                        <h4 class="text-right">Account Settings</h4>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <label class="labels ml-2 labels--custom">User name</label>
-                            <input
-                                    type="text"
-                                    class="form-control form-control-custom"
-                                    placeholder="User name"
-                                    value=""
                             />
                         </div>
                     </div>

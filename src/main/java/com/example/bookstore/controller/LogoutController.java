@@ -26,7 +26,7 @@ public class LogoutController {
        }
        HttpSession session = request.getSession();
        //delete account session
-       session.removeAttribute("accSession");
+       session.removeAttribute("user");
        //return to home page
        return "redirect:/signin";
    }

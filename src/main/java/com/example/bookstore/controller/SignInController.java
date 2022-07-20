@@ -51,7 +51,7 @@ public class SignInController {
                     //add to seesion
                     HttpSession session = request.getSession();
 
-                    if (session.getAttribute("accId") != null) {
+                    if (session.getAttribute("user") != null) {
                         return "index";
                     }
                     return "signin";
@@ -88,10 +88,10 @@ public class SignInController {
                 response.addCookie(cPass);
             }
 
-            session.setAttribute("accSession", acc);
+            session.setAttribute("user", acc);
 
             if (acc.getIsAdmin() == 1) {
-                return "redirect:/ManagerProduct";
+                return "redirect:/managerProduct";
             } else {
                 return"redirect:/";
             }

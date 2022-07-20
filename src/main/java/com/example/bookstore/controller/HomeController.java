@@ -87,7 +87,7 @@ public class HomeController {
         request.setAttribute("size", productService.getElementOfWishlistByPid(listPId).size());
         request.setAttribute("lstCategory", categoryService.getAllCategory());
         request.setAttribute("categoryID", cateId);
-        request.setAttribute("accSession", session.getAttribute("accSession"));
+        request.setAttribute("accSession", session.getAttribute("user"));
         return "index";
     }
 
