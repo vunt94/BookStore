@@ -85,11 +85,19 @@ public class CartController {
     }
 
     @PostMapping("/addToCart")
-    public ResponseEntity<Object> addToCart(@RequestParam(name="id") String pid) {
-        short aid = (short) session.getAttribute("accId");
-        short productId = Short.parseShort(pid);
-        Products.Product product = productService.getProductByID(productId);
-        return null;
+    public String addToCart(@RequestParam("pid") String productId,
+                            @RequestParam("pquantity") String quan) {
+        short aid = Short.parseShort(session.getAttribute("accId").toString());
+        short quantity = Short.parseShort(quan);
+        short pid = Short.parseShort(productId);
+        Products.Product product = productService.getProductByID((int) pid);
+        if (cartService.isProductInCart(aid, pid) == false) {
+            cartService.addProductToCart(product, aid, quantity);
+        }
+        else {
+            cartService.updateQuantity(aid, pid, quantity);
+        }
+        return "redirect:/";
     }
 
 }

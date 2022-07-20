@@ -63,7 +63,7 @@ public class CartServiceImpl implements CartService{
     }
 
     @Override
-    public void addProductToCart(Products.Product product, short aid) {
+    public void addProductToCart(Products.Product product, short aid, short quantity) {
         Carts carts = jaxbParser.getCartFromXML();
         Carts.Cart cart = new Carts.Cart();
 
@@ -72,9 +72,33 @@ public class CartServiceImpl implements CartService{
         cart.setImage(product.getImage());
         cart.setName(product.getName());
         cart.setPrice(product.getPrice());
-//        cart.setQuantity();
-
+        cart.setQuantity(quantity);
         carts.getCart().add(cart);
+        jaxbParser.writeCartToXML(carts);
+    }
+
+    @Override
+    public boolean isProductInCart(short aid, short pid) {
+        List<Carts.Cart> listCart = getCartByAccId(aid);
+        if (listCart.size() != 0) {
+            for (Carts.Cart cart : listCart) {
+                if (cart.getProductId() == pid) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void updateQuantity(short aid, short pid, short quantity) {
+        Carts carts = jaxbParser.getCartFromXML();
+        for (Carts.Cart cart : carts.getCart()) {
+            if (cart.getProductId() == pid && cart.getAccountId() == aid) {
+                cart.setQuantity((short) (cart.getQuantity() + quantity));
+                break;
+            }
+        }
         jaxbParser.writeCartToXML(carts);
     }
 
