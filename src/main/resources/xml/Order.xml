@@ -1,9 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Orders>
-    <Order ID="2">
-        <accountID>1</accountID>
-        <orderDate>2021-03-31</orderDate>
-        <totalPrice>300</totalPrice>
-        <note>nothing</note>
-    </Order>
-</Orders>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Orders><Order ID="2"><accountID>1</accountID><orderDate>2021-03-31</orderDate><totalPrice>300</totalPrice><note>nothing</note></Order><Order ID="2"><accountID>4</accountID><orderDate>21-07-2022</orderDate><totalPrice>139</totalPrice></Order><Order ID="3"><accountID>4</accountID><orderDate>21-07-2022</orderDate><totalPrice>328</totalPrice></Order><Order ID="4"><accountID>4</accountID><orderDate>21-07-2022</orderDate><totalPrice>397</totalPrice></Order><Order ID="5"><accountID>4</accountID><orderDate>21-07-2022</orderDate><totalPrice>328</totalPrice></Order><Order ID="6"><accountID>4</accountID><orderDate>21-07-2022</orderDate><totalPrice>328</totalPrice></Order></Orders>

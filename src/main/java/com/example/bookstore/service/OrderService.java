@@ -1,9 +1,6 @@
 package com.example.bookstore.service;
 
-import com.example.bookstore.entity.Accounts;
-import com.example.bookstore.entity.OrderDetails;
-import com.example.bookstore.entity.Orders;
-import com.example.bookstore.entity.Products;
+import com.example.bookstore.entity.*;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +14,7 @@ public interface OrderService {
     public Map<OrderDetails.OrderDetail,Products.Product> getProductByOrder(List<OrderDetails.OrderDetail> orderDetails);
 
     public Orders addOrder();
-    public void update(Orders orders);
+    public int update(List<Carts.Cart> list);
 
     public Accounts.Account getAccountById(int id);
 }

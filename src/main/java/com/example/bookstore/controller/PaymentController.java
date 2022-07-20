@@ -31,10 +31,12 @@ public class PaymentController {
         // TODO: account from session
         List<Carts.Cart> list = new ArrayList<>();
         list = (List<Carts.Cart>) session.getAttribute("listCart");
-        Accounts.Account acc = orderService.getAccountById(ORDER_DEMO_ID);
+        Accounts.Account acc = orderService.getAccountById(list.get(0).getAccountId());
+        int orderId = orderService.update(list);
 
         // TODO: list orderdetails from cart
-        List<OrderDetails.OrderDetail> orderDetails = orderService.getOrderDetailByOrder(ORDER_DEMO_ID);
+        List<OrderDetails.OrderDetail> orderDetails = orderService.getOrderDetailByOrder(orderId);
+        Orders.Order order1 = orderService.getOrder(orderId);
         Map<OrderDetails.OrderDetail,Products.Product> productByOrder = orderService.getProductByOrder(orderDetails);
         request.setAttribute("orderDetails", orderDetails);
         request.setAttribute("productByOrder",productByOrder);
@@ -45,14 +47,15 @@ public class PaymentController {
             calculating+=order.getSubPrice();
         }
         // TODO: calculate totalprice
-        request.setAttribute("totalPrice", calculating);
+        request.setAttribute("totalPrice", order1.getTotalPrice());
         return "payment";
     }
     @GetMapping("payment-list")
-    public String listOrder(HttpServletRequest request, @RequestParam(name = "userId") int userId) {
+    public String listOrder(HttpServletRequest request) {
+        int userId = Short.parseShort(session.getAttribute("accId").toString());
     //  TODO: List all order
         Orders ordersByUserId = orderService.getOrdersByUserId(userId);
-        Shipments.Shipment shipmentsByOrderId = shipmentService.getShipmentsByOrderId(ordersByUserId.getOrder().get(0).getId());
+        Shipments.Shipment shipmentsByOrderId = shipmentService.getShipmentsByOrderId(1);
         request.setAttribute("shipmentsByIdOrder",shipmentsByOrderId);
         request.setAttribute("ordersByUserId",ordersByUserId.getOrder());
         return "payment-list";
@@ -61,9 +64,10 @@ public class PaymentController {
     public String detailOrder(HttpServletRequest request, @RequestParam(name = "id") int orderId) {
     //  TODO: view detail of an order
         // TODO: Account get from session
-        Accounts.Account acc = orderService.getAccountById(orderId);
-        Shipments.Shipment shipmentByUserId = shipmentService.getShipmentsByOrderId(orderId);
+
+        Shipments.Shipment shipmentByUserId = shipmentService.getShipmentsByOrderId(2);
         Orders.Order order = orderService.getOrder(orderId);
+        Accounts.Account acc = orderService.getAccountById(order.getAccountID());
         List<OrderDetails.OrderDetail> orderDetails = orderService.getOrderDetailByOrder(orderId);
         Map<OrderDetails.OrderDetail,Products.Product> productByOrder = orderService.getProductByOrder(orderDetails);
         int calculating = 10;
@@ -80,31 +84,32 @@ public class PaymentController {
         return "payment";
     }
     @GetMapping("payment-suscess")
-    public String paymentSuscess() {
-        // TODO: Add order
-//        orderService.addOrder();
-//        // TODO: Add shipment
-//        shipmentService.addShipments(new Shipments.Shipment());
-//        // TODO: Add order detail
-
+    public String paymentSuscess(HttpServletRequest request) {
         return "paymentSuscess";
     }
-    @PostMapping("payment-delete")
-    public String deleteOrder(HttpServletRequest request, @RequestParam(name = "id") int orderId) {
-    //  TODO: delete an order
-        Orders ordersListObj = orderService.getOrdersByUserId(1);
-        List<Orders.Order> orders = ordersListObj.getOrder();
+    @PostMapping("payment-buy-again")
+    public String deleteOrder(HttpServletRequest request) {
+        List<Carts.Cart> list = new ArrayList<>();
+        list = (List<Carts.Cart>) session.getAttribute("listCart");
+        Accounts.Account acc = orderService.getAccountById(list.get(0).getAccountId());
+        int orderId = orderService.update(list);
 
-        // TODO: calculate totalprice
-        for (Orders.Order order:
-             orders) {
-            if (order.getId() == orderId) {
-                orders.remove(order);
-                return "payment";
-            }
+        // TODO: list orderdetails from cart
+        List<OrderDetails.OrderDetail> orderDetails = orderService.getOrderDetailByOrder(orderId);
+        Orders.Order order1 = orderService.getOrder(orderId);
+        Map<OrderDetails.OrderDetail,Products.Product> productByOrder = orderService.getProductByOrder(orderDetails);
+        request.setAttribute("orderDetails", orderDetails);
+        request.setAttribute("productByOrder",productByOrder);
+        request.setAttribute("account",acc);
+        int calculating = 10;
+        for (OrderDetails.OrderDetail order: orderDetails
+        ) {
+            calculating+=order.getSubPrice();
         }
-        orderService.update(ordersListObj);
+        // TODO: calculate totalprice
+        request.setAttribute("totalPrice", order1.getTotalPrice());
         return "payment";
+
     }
 
 
