@@ -108,7 +108,7 @@ $('#up').click(function (){
 
 $('#down').click(function (){
     var numProduct = Number($('.quantity').val());
-    $('.quantity').val(numProduct - 1);
+    if (numProduct > 1) $('.quantity').val(numProduct - 1);
     $('.quantity').attr("name", numProduct - 1);
 });
 
