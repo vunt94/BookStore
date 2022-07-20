@@ -122,13 +122,13 @@ public class Orders {
         protected short accountID;
         @XmlElement(required = true)
         @XmlSchemaType(name = "date")
-        protected XMLGregorianCalendar orderDate;
+        protected String orderDate;
         @XmlSchemaType(name = "unsignedShort")
         protected int totalPrice;
         protected String note;
         @XmlAttribute(name = "ID", required = true)
         @XmlSchemaType(name = "unsignedByte")
-        protected short id;
+        protected int id;
 
         /**
          * Gets the value of the accountID property.
@@ -154,7 +154,7 @@ public class Orders {
          *     {@link XMLGregorianCalendar }
          *     
          */
-        public XMLGregorianCalendar getOrderDate() {
+        public String getOrderDate() {
             return orderDate;
         }
 
@@ -166,7 +166,7 @@ public class Orders {
          *     {@link XMLGregorianCalendar }
          *     
          */
-        public void setOrderDate(XMLGregorianCalendar value) {
+        public void setOrderDate(String value) {
             this.orderDate = value;
         }
 
@@ -214,7 +214,7 @@ public class Orders {
          * Gets the value of the id property.
          * 
          */
-        public short getId() {
+        public int getId() {
             return id;
         }
 
@@ -222,7 +222,7 @@ public class Orders {
          * Sets the value of the id property.
          * 
          */
-        public void setId(short value) {
+        public void setId(int value) {
             this.id = value;
         }
 
