@@ -26,13 +26,13 @@ public interface ProductService {
 
     List<Products.Product> getProductByCategoryID(int cateID);
 
+    short getAmountOfProduct (short productId);
+
     Products.Product createNewProduct(Products.Product product);
 
     List<Products.Product> updateProduct(Products.Product product);
 
     List<Products.Product> deleteProduct(Products.Product product);
-
-
 
     Page<Products.Product> findPaginated(Pageable pageable, List<Products.Product> lstProduct);
 

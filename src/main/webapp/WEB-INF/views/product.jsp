@@ -45,64 +45,6 @@
 <!-- Header -->
 <%@include file="layout/header.jsp" %>
 
-<!-- Cart -->
-<div class="wrap-header-cart js-panel-cart">
-    <div class="s-full js-hide-cart"></div>
-
-    <div class="header-cart flex-col-l p-l-65 p-r-25">
-        <div class="header-cart-title flex-w flex-sb-m p-b-8">
-                <span class="mtext-103 cl2">
-                    Favorite Cart
-				</span>
-
-            <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-                <i class="zmdi zmdi-close"></i>
-            </div>
-        </div>
-
-        <div class="header-cart-content flex-w js-pscroll">
-            <ul class="header-cart-wrapitem w-full">
-                <li class="header-cart-item flex-w flex-t m-b-12">
-                    <div class="header-cart-item-img">
-                        <img src="images/item-cart-01.jpg" alt="IMG">
-                    </div>
-
-                    <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                            White Shirt Pleat
-                        </a>
-                    </div>
-                </li>
-
-                <li class="header-cart-item flex-w flex-t m-b-12">
-                    <div class="header-cart-item-img">
-                        <img src="images/item-cart-02.jpg" alt="IMG">
-                    </div>
-
-                    <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                            Converse All Star
-                        </a>
-                    </div>
-                </li>
-
-                <li class="header-cart-item flex-w flex-t m-b-12">
-                    <div class="header-cart-item-img">
-                        <img src="images/item-cart-03.jpg" alt="IMG">
-                    </div>
-
-                    <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                            Nixon Porter Leather
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
 <!-- Product -->
 <div class="bg0 m-t-23 p-b-140">
     <div class="container">
@@ -259,7 +201,9 @@
                             </div>
 
                             <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                                <a id="${item.ID}" onclick="isProductInWishlist(event,${item.ID})"
+                                   href="${accId != null ? '#' : '/signin'}"
+                                   class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 ${listPidInWishlist.contains(item.ID) ? "js-addedwish-b2" : ""}">
                                     <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
                                     <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
                                 </a>
@@ -461,13 +405,18 @@
         e.preventDefault();
     });
 
-    $('.js-addwish-b2').each(function() {
+    $('.js-addwish-b2').each(function(){
         var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-        $(this).on('click', function() {
-            swal(nameProduct, "is added to wishlist !", "success");
+        $(this).on('click', function(){
 
-            $(this).addClass('js-addedwish-b2');
-            $(this).off('click');
+            if ($(this).hasClass('js-addedwish-b2')) {
+                swal(nameProduct, "is deleted from wishlist !", "success");
+                $(this).removeClass('js-addedwish-b2');
+            }
+            else {
+                swal(nameProduct, "is added to wishlist !", "success");
+                $(this).addClass('js-addedwish-b2');
+            }
         });
     });
 
@@ -510,7 +459,7 @@
 </script>
 <!--===============================================================================================-->
 <script src="js/main.js"></script>
-
+<script src="js/favorite.js"></script>
 </body>
 
 </html>

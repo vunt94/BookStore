@@ -44,6 +44,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public short getAmountOfProduct(short productId) {
+        List<Products.Product> lstProduct = getAllProduct();
+        for (Products.Product product : lstProduct) {
+            if (productId == product.getID()) {
+                return product.getAmount();
+            }
+        }
+        return 0;
+    }
+
     public Page<Products.Product> findPaginated(Pageable pageable, List<Products.Product> lstProduct) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
@@ -78,12 +88,21 @@ public class ProductServiceImpl implements ProductService {
     public List<Products.Product> getElementOfWishlistByPid(List<Short> listProductId) {
         List<Products.Product> listProductInWishlist = new ArrayList<>();
         List<Products.Product> listAllProduct = getAllProduct();
-        for (Products.Product product : listAllProduct) {
-            if ( listProductId.contains(product.getID())) {
-                listProductInWishlist.add(product);
-            }
+
+        for (Short id : listProductId) {
+             listProductInWishlist.add(findProductByPId(id));
         }
         return listProductInWishlist;
+    }
+
+    public Products.Product findProductByPId(short id) {
+        List<Products.Product> listAllProduct = getAllProduct();
+        for (Products.Product product : listAllProduct) {
+            if (product.getID() == id) {
+                return product;
+            }
+        }
+        return null;
     }
 
     @Override

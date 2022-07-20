@@ -214,7 +214,7 @@ public class Orders {
          * Gets the value of the id property.
          * 
          */
-        public short getID() {
+        public short getId() {
             return id;
         }
 
@@ -222,7 +222,7 @@ public class Orders {
          * Sets the value of the id property.
          * 
          */
-        public void setID(short value) {
+        public void setId(short value) {
             this.id = value;
         }
 

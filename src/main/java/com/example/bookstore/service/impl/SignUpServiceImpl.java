@@ -10,12 +10,11 @@ import java.util.List;
 public class SignUpServiceImpl implements SignUpService {
 
     private JAXBParser jaxbParser = new JAXBParser();
-    Accounts accounts = jaxbParser.readListAccountFromXML();
-    List<Accounts.Account> accountList = accounts.getAccount();
+    List<Accounts.Account> accountList = jaxbParser.readListAccountFromXML();
 
     @Override
     public void registerAccount(Accounts.Account newAccount) {
-        accounts.getAccount().add(newAccount);
+        accountList.add(newAccount);
         jaxbParser.writeAccountToXML(newAccount);
     }
 
