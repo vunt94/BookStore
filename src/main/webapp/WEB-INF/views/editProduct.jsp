@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,7 +120,9 @@
                     <label class="col-md-4 control-label" for="image">Image</label>
                 </div>
                 <div class="col-75">
-                    <input id="image" path="image" name="image" value="${productDetail.image}" required="" class="input-file" type="file">
+                    <img src="images/book/${productDetail.image}" alt="IMG-PRODUCT" style="width: 20%">
+                    <input name="image" id="image" path="image" value="${productDetail.image}" />
+<%--                    <input id="image" path="image" name="image" value="c:url${productDetail.image}" required="" class="input-file" type="file">--%>
                 </div>
             </div>
             <div class="row">
