@@ -197,31 +197,31 @@
 
                         <ul>
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                <a href="/filterByPrice?indexPrice=0" class="filter-link stext-106 trans-04 filter-link-active">
                                     All
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="/filterByPrice?indexPrice=1" class="filter-link stext-106 trans-04">
                                     $0.00 - $50.00
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="/filterByPrice?indexPrice=2" class="filter-link stext-106 trans-04">
                                     $50.00 - $100.00
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="/filterByPrice?indexPrice=3" class="filter-link stext-106 trans-04">
                                     $100.00 - $150.00
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="/filterByPrice?indexPrice=4" class="filter-link stext-106 trans-04">
                                     $150.00+
                                 </a>
                             </li>
