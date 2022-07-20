@@ -101,9 +101,9 @@ public class ProductController {
 
     @GetMapping("/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable("productId") String productId,
-                              @RequestParam("page") Optional<Integer> page,
-                              @RequestParam("size") Optional<Integer> size) {
-        Products.Product product =  productService.getProductByID(Integer.parseInt(productId));
+                                @RequestParam("page") Optional<Integer> page,
+                                @RequestParam("size") Optional<Integer> size) {
+        Products.Product product = productService.getProductByID(Integer.parseInt(productId));
         List<Products.Product> productList = productService.deleteProduct(product);
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(4);
@@ -116,6 +116,6 @@ public class ProductController {
                     .collect(Collectors.toList());
             request.setAttribute("pageNumbers", pageNumbers);
         }
-        return "managerProduct";
+        return "redirect:/managerProduct";
     }
 }
