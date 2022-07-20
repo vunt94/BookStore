@@ -8,8 +8,11 @@ import com.example.bookstore.service.OrderService;
 import com.example.bookstore.ulti.PaymentJAXBParser;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.JAXBException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -20,11 +23,16 @@ public class OrderServiceImpl implements OrderService {
         Orders listOrderFromXML = jaxbParser.getListOrderFromXML();
         for (Orders.Order order: listOrderFromXML.getOrder()
              ) {
-            if(order.getID()==orderId){
+            if(order.getId()==orderId){
                 return order;
             }
         }
         return null;
+    }
+
+    @Override
+    public Orders getOrders() {
+        return jaxbParser.getListOrderFromXML();
     }
 
     @Override
@@ -45,15 +53,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Products.Product> getProductByOrder(List<OrderDetails.OrderDetail> orderDetails) {
+    public Map<OrderDetails.OrderDetail, Products.Product> getProductByOrder(List<OrderDetails.OrderDetail> orderDetails) {
         List<Products.Product> productByOrderByJAXB = jaxbParser.getProductByOrderByJAXB();
-        List<Products.Product> productsByOrder = new ArrayList<>();
+        Map<OrderDetails.OrderDetail, Products.Product> productsByOrder = new HashMap<>();
         for (Products.Product product: productByOrderByJAXB
              ) {
             for (OrderDetails.OrderDetail orderDetail : orderDetails
             ){
                 if(product.getID() == orderDetail.getProductID()){
-                    productsByOrder.add(product);
+                    productsByOrder.put(orderDetail,product);
                 }
             }
         }
@@ -63,6 +71,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Orders addOrder() {
         return null;
+    }
+
+    @Override
+    public void update(Orders orders) {
+        try {
+            jaxbParser.writeOrdersToXml(orders);
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

@@ -6,15 +6,18 @@ import com.example.bookstore.entity.Orders;
 import com.example.bookstore.entity.Products;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OrderService {
     public Orders.Order getOrder(int OrderId);
+    public Orders getOrders();
     public List<OrderDetails.OrderDetail> getOrderDetailByOrder(int orderId);
     public Orders updateOrder(String userId);
 
-    public List<Products.Product> getProductByOrder(List<OrderDetails.OrderDetail> orderDetails);
+    public Map<OrderDetails.OrderDetail,Products.Product> getProductByOrder(List<OrderDetails.OrderDetail> orderDetails);
 
     public Orders addOrder();
+    public void update(Orders orders);
 
     public Accounts.Account getAccountById(int id);
 }

@@ -35,6 +35,15 @@ public class PaymentJAXBParser {
             throw new RuntimeException(e);
         }
     }
+    public void writeOrdersToXml(Orders orders) throws JAXBException {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Orders.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.marshal(orders, new File(constant.OrderXMLPath));
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public List<OrderDetails.OrderDetail> getOrderDetailByJAXB() {
         try {
             JAXBContext context = JAXBContext.newInstance(OrderDetails.class);

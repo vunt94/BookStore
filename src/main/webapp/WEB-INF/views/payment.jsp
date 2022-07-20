@@ -34,7 +34,7 @@
 <body class="animsition">
 
 <!-- Header -->
-<%@include file="layout/header.jsp"%>
+<%@include file="/WEB-INF/views/layout/header.jsp"%>
 
 <!-- breadcrumb -->
 <section class="sec-product-detail bg0 p-t-65 p-b-60">
@@ -69,19 +69,16 @@
                                 <td class="column-2"><b>Address</b></td>
                                 <td class="column-3"><b>Phone number</b></td>
                             </tr>
-                            <c:forEach items="${shipmentsByUserId}" var="item">
                                 <tr class="table_row" style="padding-bottom: 20px; height: 80px;">
-                                    <td class="column-1"><b>${account.getUserName()}</b></td>
-                                    <td class="column-2">${item.shippingAddress}</td>
-                                    <td class="column-3"><b>${account.phoneNumber}</b></td>
+                                    <td class="column-1" style="margin-left: 15px">${account.userName}</td>
+                                    <c:if test="${shipment == null}">
+                                        <td class="column-2"><input name="shipping-address" type="text" style="border: solid"/></td>
+                                    </c:if>
+                                    <c:if test="${shipment != null}">
+                                        <td class="column-2">${shipment.shippingAddress}</td>
+                                    </c:if>
+                                    <td class="column-3">${account.phoneNumber}</td>
                                 </tr>
-                            </c:forEach>
-                            <tr class="table_row" style="padding-bottom: 20px; height: 80px;">
-                                <td class="column-1" style="margin-left: 15px"><input name="name" type="text" style="border: solid"/></td>
-                                <td class="column-2"><input name="address" type="text" style="border: solid"/></td>
-                                <td class="column-3"><input name="phone-number" type="text" style="border: solid"/></td>
-                            </tr>
-
                         </table>
                     </div>
 
@@ -104,26 +101,22 @@
                                 <th class="column-4">Quantity</th>
                                 <th class="column-5">Total</th>
                             </tr>
-                            <c:forEach items="${orderDetailByOrder}" var="item">
-                            <c:forEach items="${productByOrder}" var="product">
-                                <c:if test = "${product.getID() == item.getProductID()}">
+                            <c:forEach items="${orderDetails}" var="orderDetail">
                                 <tr class="table_row">
                                     <td class="column-1">
                                         <div class="how-itemcart1">
-                                            <img src="images/book/${product.image}" alt="IMG">
+                                            <img src="images/book/${productByOrder.get(orderDetail).image}" alt="IMG">
                                         </div>
                                     </td>
-<%--                                    <td class="column-2">${product.getID()}</td>--%>
-<%--                                    <td class="column-3">${item.getProductID()}</td>--%>
-                                    <td class="column-2">${product.name}</td>
+                                        <%--                                    <td class="column-2">${product.getID()}</td>--%>
+                                        <%--                                    <td class="column-3">${item.getProductID()}</td>--%>
+                                    <td class="column-2">${productByOrder.get(orderDetail).name}</td>
                                     <td class="column-3">
-                                        $${product.price}</td>
-                                    <td class="column-4">${item.quantity}</td>
+                                        $${productByOrder.get(orderDetail).price}</td>
+                                    <td class="column-4">${orderDetail.quantity}</td>
                                     <td class="column-5">
-                                        $${item.subPrice}</td>
+                                        $${orderDetail.subPrice}</td>
                                 </tr>
-                            </c:if>
-                            </c:forEach>
                             </c:forEach>
                         </table>
                     </div>
@@ -133,7 +126,12 @@
                             <div>
                                 Note:
                             </div>
-                            <input class="stext-104 cl2 plh4 size-333 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Note to seller...">
+                            <c:if test="${order == null}">
+                                <input class="stext-104 cl2 plh4 size-333 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="order-note" placeholder="Note to seller...">
+                            </c:if>
+                            <c:if test="${order != null}">
+                                ${order.note}
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -159,12 +157,17 @@
 
 
                                 <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                                    <select class="js-select2" name="time">
-                                        <option>Select a type ship...</option>
-                                        <option>Standrad delivery</option>
-                                        <option>Express delivery</option>
-                                    </select>
+                                    <c:if test="${shipment == null}">
+                                        <select class="js-select2" name="shipping-type">
+                                            <option>Select a type ship...</option>
+                                            <option value="0">Standrad delivery</option>
+                                            <option value="1">Express delivery</option>
+                                        </select>
+                                    </c:if>
                                     <div class="dropDownSelect2"></div>
+                                    <c:if test="${shipment != null}">
+                                        ${shipment.shippingType == 0 ? "Standrad delivery" : "Express delivery"}
+                                    </c:if>
                                 </div>
 
                                 <div class="flex-w flex-t bor12 p-b-13">
@@ -176,7 +179,7 @@
 
                                     <div class="size-209">
 								<span class="mtext-110 cl2">
-									$9.65
+									$${shipment == null ? (shipment.shippingType == 0 ? 300 : 900) : shipment.shippingCost}
 								</span>
                                     </div>
                                     <div class="flex-w">
@@ -196,19 +199,30 @@
 								<span class="mtext-101 cl2">
 									Total:
 								</span>
-
-                        </div>
-
-                        <div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
-									$${order.totalPrice}
+                                <span class="mtext-110 cl2">
+									$${totalPrice}
 								</span>
                         </div>
                     </div>
 
-                    <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-                        Proceed to Checkout
-                    </button>
+                    <c:if test="${order == null}">
+                        <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
+                                type="submit"
+                                formaction="/payment-add"
+                                formmethod="post">
+                            Proceed to Checkout
+                        </button>
+                    </c:if>
+                    <c:if test="${order != null}">
+                        <input type="hidden" name="id" value="${order.id}">
+                        <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
+                                type="submit"
+                                formaction="/payment-delete"
+                                style="background-color: red"
+                                formmethod="post">
+                            Delete order
+                        </button>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -219,7 +233,7 @@
 
 
 <!-- Footer -->
-<%@include file="layout/footer.jsp" %>
+<%@include file="/WEB-INF/views/layout/footer.jsp" %>
 
 <!-- Back to top -->
 <div class="btn-back-to-top" id="myBtn">
