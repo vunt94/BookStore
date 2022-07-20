@@ -31,8 +31,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Orders getOrders() {
-        return jaxbParser.getListOrderFromXML();
+    public Orders getOrdersByUserId(int id) {
+        Orders listOrderFromXML = jaxbParser.getListOrderFromXML();
+        Orders listOrderByUserId = new Orders();
+        for (Orders.Order or: listOrderFromXML.getOrder()
+             ) {
+            if(or.getAccountID() == id){
+                listOrderByUserId.getOrder().add(or);
+            }
+        }
+        return listOrderByUserId;
     }
 
     @Override

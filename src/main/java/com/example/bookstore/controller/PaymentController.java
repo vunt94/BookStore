@@ -34,14 +34,23 @@ public class PaymentController {
         request.setAttribute("orderDetails", orderDetails);
         request.setAttribute("productByOrder",productByOrder);
         request.setAttribute("account",acc);
+        int calculating = 10;
+        for (OrderDetails.OrderDetail order: orderDetails
+             ) {
+            calculating+=order.getSubPrice();
+        }
         // TODO: calculate totalprice
-        request.setAttribute("totalPrice", "Calculating");
+        request.setAttribute("totalPrice", calculating);
         return "payment";
     }
     @GetMapping("payment-list")
-    public String listOrder(HttpServletRequest request) {
+    public String listOrder(HttpServletRequest request, @RequestParam(name = "userId") int userId) {
     //  TODO: List all order
-        return "payment";
+        Orders ordersByUserId = orderService.getOrdersByUserId(userId);
+        Shipments.Shipment shipmentsByOrderId = shipmentService.getShipmentsByOrderId(ordersByUserId.getOrder().get(0).getId());
+        request.setAttribute("shipmentsByIdOrder",shipmentsByOrderId);
+        request.setAttribute("ordersByUserId",ordersByUserId.getOrder());
+        return "payment-list";
     }
     @GetMapping("payment-detail")
     public String detailOrder(HttpServletRequest request, @RequestParam(name = "id") int orderId) {
@@ -52,28 +61,36 @@ public class PaymentController {
         Orders.Order order = orderService.getOrder(orderId);
         List<OrderDetails.OrderDetail> orderDetails = orderService.getOrderDetailByOrder(orderId);
         Map<OrderDetails.OrderDetail,Products.Product> productByOrder = orderService.getProductByOrder(orderDetails);
+        int calculating = 10;
+        for (OrderDetails.OrderDetail ordersss: orderDetails
+        ) {
+            calculating+=ordersss.getSubPrice();
+        }
         request.setAttribute("shipment",shipmentByUserId);
         request.setAttribute("orderDetails", orderDetails);
         request.setAttribute("productByOrder",productByOrder);
         request.setAttribute("account",acc);
         request.setAttribute("order",order);
-        request.setAttribute("totalPrice", order.getTotalPrice());
+        request.setAttribute("totalPrice", calculating);
         return "payment";
     }
-    @PostMapping("payment-add")
-    public String addOrder(HttpServletRequest request) {
+    @GetMapping("payment-suscess")
+    public String paymentSuscess() {
         // TODO: Add order
-        orderService.addOrder();
-        // TODO: Add shipment
-        shipmentService.addShipments(new Shipments.Shipment());
-        // TODO: Add order detail
+//        orderService.addOrder();
+//        // TODO: Add shipment
+//        shipmentService.addShipments(new Shipments.Shipment());
+//        // TODO: Add order detail
 
-        return "payment";
-    }@PostMapping("payment-delete")
+        return "paymentSuscess";
+    }
+    @PostMapping("payment-delete")
     public String deleteOrder(HttpServletRequest request, @RequestParam(name = "id") int orderId) {
     //  TODO: delete an order
-        Orders ordersListObj = orderService.getOrders();
+        Orders ordersListObj = orderService.getOrdersByUserId(1);
         List<Orders.Order> orders = ordersListObj.getOrder();
+
+        // TODO: calculate totalprice
         for (Orders.Order order:
              orders) {
             if (order.getId() == orderId) {

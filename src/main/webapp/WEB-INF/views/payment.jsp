@@ -72,7 +72,10 @@
                                 <tr class="table_row" style="padding-bottom: 20px; height: 80px;">
                                     <td class="column-1" style="margin-left: 15px">${account.userName}</td>
                                     <c:if test="${shipment == null}">
-                                        <td class="column-2"><input name="shipping-address" type="text" style="border: solid"/></td>
+
+                                        <td class="column-2"><input type="text" name="shipping-address" required="required" pattern="[A-Za-z0-9]{1,20}" style="border: solid">
+<%--                                           <input name="shipping-address" type="text" style="border: solid"/>--%>
+                                       </td>
                                     </c:if>
                                     <c:if test="${shipment != null}">
                                         <td class="column-2">${shipment.shippingAddress}</td>
@@ -143,11 +146,7 @@
                         Payment Totals
                     </h4>
                     <div class="">
-                        <div class="size-208 w-full-ssm">
-								<span class="stext-110 cl2">
-									Ship type:
-								</span>
-                        </div>
+
 
                         <div class="">
                             <p class="stext-111 cl6 p-t-2">
@@ -156,19 +155,6 @@
                             <div class="">
 
 
-                                <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                                    <c:if test="${shipment == null}">
-                                        <select class="js-select2" name="shipping-type">
-                                            <option>Select a type ship...</option>
-                                            <option value="0">Standrad delivery</option>
-                                            <option value="1">Express delivery</option>
-                                        </select>
-                                    </c:if>
-                                    <div class="dropDownSelect2"></div>
-                                    <c:if test="${shipment != null}">
-                                        ${shipment.shippingType == 0 ? "Standrad delivery" : "Express delivery"}
-                                    </c:if>
-                                </div>
 
                                 <div class="flex-w flex-t bor12 p-b-13">
                                     <div class="size-208">
@@ -179,14 +165,11 @@
 
                                     <div class="size-209">
 								<span class="mtext-110 cl2">
-									$${shipment == null ? (shipment.shippingType == 0 ? 300 : 900) : shipment.shippingCost}
+<%--									$${shipment == null ? (shipment.shippingType == 0 ? 300 : 900) : shipment.shippingCost}--%>
+                                    $10
 								</span>
                                     </div>
-                                    <div class="flex-w">
-                                        <div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-                                            Update Totals
-                                        </div>
-                                    </div>
+
                                 </div>
 
 
@@ -206,12 +189,9 @@
                     </div>
 
                     <c:if test="${order == null}">
-                        <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
-                                type="submit"
-                                formaction="/payment-add"
-                                formmethod="post">
-                            Proceed to Checkout
-                        </button>
+                        <a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" href="/payment-suscess" style="background-color: green">
+                            Proceed to Checkout!
+                        </a>
                     </c:if>
                     <c:if test="${order != null}">
                         <input type="hidden" name="id" value="${order.id}">
@@ -220,7 +200,7 @@
                                 formaction="/payment-delete"
                                 style="background-color: red"
                                 formmethod="post">
-                            Delete order
+                            Buy it again!
                         </button>
                     </c:if>
                 </div>
