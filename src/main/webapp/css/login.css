@@ -445,6 +445,12 @@ input.input100 {
     padding: 0 10px;
 }
 
+
+.alert-success {
+    border-radius: 5px !important;
+    margin: 10px 0 !important;
+}
+
 @media (max-width: 992px) {
     .alert-validate::before {
         visibility: visible;

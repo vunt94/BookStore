@@ -11,13 +11,12 @@ public class ProfileServiceImpl implements ProfileService {
     private JAXBParser jaxbParser = new JAXBParser();
 
     @Override
-    public boolean checkConfirmPassWord(int userId, String oldPassword) {
+    public boolean checkConfirmPassWord(int userId, String currentPassword) {
         Accounts.Account acc = getAccountByUserName(userId);
         if (acc.getID() == userId) {
-            if (acc.getPassword().equals(oldPassword)) {
+            if (acc.getPassword().equals(currentPassword)) {
                 return true;
             }
-
         }
         return false;
     }

@@ -109,7 +109,7 @@
                                     class="form-control form-control-custom"
                                     value=""
                                     placeholder="Current Password"
-                                    name="oldPassword"
+                                    name="currentPassword"
                             />
                         </div>
                         <div class="col-md-6">
@@ -126,12 +126,17 @@
                         </div>
                     </div>
                     <c:choose>
-                        <c:when test="${message != null}">
+                        <c:when test="${errorMess != null}">
                             <div class="alert-error">
-                                <p class="alert__content">Your current password is incorrect. Please check again!</p>
+                                <p class="alert__content">${errorMess}</p>
                             </div>
                         </c:when>
                     </c:choose>
+                    <c:if test="${successMess != null}">
+                        <div class="alert-success">
+                            <p class="alert__content">${successMess}</p>
+                        </div>
+                    </c:if>
                     <div class="mt-5 text-right">
                         <button class="btn btn--custom profile-button " type="submit">
                             Save
