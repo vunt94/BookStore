@@ -48,14 +48,10 @@
         <phoneNumber>094325435</phoneNumber>
         <isAdmin>0</isAdmin>
     </Account>
-    <Account ID="12">
-        <userName>HuyenPT</userName>
-        <password>0383683363</password>
-        <isAdmin>0</isAdmin>
-    </Account>
-    <Account ID="13">
-        <userName>Hoang Anh</userName>
-        <phoneNumber>038899445</phoneNumber>
+    <Account ID="11">
+        <userName>teacher</userName>
+        <password>123456</password>
+        <phoneNumber>0383683363</phoneNumber>
         <isAdmin>0</isAdmin>
     </Account>
 </Accounts>

@@ -26,7 +26,7 @@
                     <input
                             class="input100"
                             type="number"
-                            name="phone"
+                            name="phoneNumber"
                             placeholder="Phone Number"
                     />
                     <span class="focus-input100"></span>
