@@ -39,15 +39,17 @@ public class ProfileController {
     public String doPost() {
         String userName = request.getParameter("userName");
         String phoneNumber = request.getParameter("phoneNumber");
-        String oldPassword = request.getParameter("oldPassword");
+        String currentPassword = request.getParameter("currentPassword");
         String newPassword = request.getParameter("newPassword");
         Accounts.Account sessionAcc = (Accounts.Account) session.getAttribute("user");
         int uid = sessionAcc.getID();
 
-        boolean isOldPassCorrect = profileService.checkConfirmPassWord(uid, oldPassword);
-        String message = null;
+        boolean isOldPassCorrect = profileService.checkConfirmPassWord(uid, currentPassword);
+        String errorMess = null;
+        String successMess = null;
         if (!isOldPassCorrect) {
-            message = "Old password is not correct";
+            errorMess = "Your current password is incorrect. Please check again!";
+            request.setAttribute("errorMess", errorMess);
         } else {
             Accounts.Account acc = new Accounts.Account();
             acc.setID(uid);
@@ -55,10 +57,9 @@ public class ProfileController {
             acc.setPhoneNumber(phoneNumber);
             acc.setPassword(newPassword);
             profileService.editProfile(acc);
+            successMess = "Change password successfully!";
+            request.setAttribute("successMess", successMess);
         }
-        request.setAttribute("message", message);
-
-
-        return "redirect:/";
+        return "profile";
     }
 }
