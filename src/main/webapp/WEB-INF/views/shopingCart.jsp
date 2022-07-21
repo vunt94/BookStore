@@ -40,8 +40,8 @@
 
 <!-- breadcrumb -->
 <div class="container">
-    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-        <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-100 p-lr-0-lg">
+        <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
             Home
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
@@ -86,7 +86,7 @@
                                             </div>
 
                                             <input id="${cart.productId}" class="mtext-104 cl3 txt-center num-product" type="number" name="${cart.quantity}" value="${cart.quantity}">
-                                            <input id="test" type="hidden" value="1">
+
                                             <div onclick="updatePrice(${cart.productId}, ${cart.price}, 'up')" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i class="fs-16 zmdi zmdi-plus"></i>
                                             </div>

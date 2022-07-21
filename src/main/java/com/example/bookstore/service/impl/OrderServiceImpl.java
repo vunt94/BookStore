@@ -1,14 +1,12 @@
 package com.example.bookstore.service.impl;
 
-import com.example.bookstore.entity.Accounts;
-import com.example.bookstore.entity.OrderDetails;
-import com.example.bookstore.entity.Orders;
-import com.example.bookstore.entity.Products;
+import com.example.bookstore.entity.*;
 import com.example.bookstore.service.OrderService;
 import com.example.bookstore.ulti.PaymentJAXBParser;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -82,12 +80,44 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void update(Orders orders) {
+    public int update(List<Carts.Cart> list) {
+
+        Orders listOrderFromXML = jaxbParser.getListOrderFromXML();
+
+        Orders.Order order = new Orders.Order();
+        order.setId(listOrderFromXML.getOrder().size()+1);
+        OrderDetails orderDetails = jaxbParser.getListOrderDetailFromXML();
+
+        int totalMoney=10;
         try {
-            jaxbParser.writeOrdersToXml(orders);
+        for (Carts.Cart cart: list
+             ) {
+            totalMoney+=cart.getPrice()*cart.getQuantity();
+            order.setAccountID(cart.getAccountId());
+            order.setOrderDate("21-07-2022");
+            order.setTotalPrice(0);
+            OrderDetails.OrderDetail orderDetail = new OrderDetails.OrderDetail();
+            orderDetail.setID(orderDetails.getOrderDetail().size()+1);
+            orderDetail.setOrderID(order.getId());
+            orderDetail.setProductID(cart.getProductId());
+            orderDetail.setQuantity(cart.getQuantity());
+            orderDetail.setSubPrice(cart.getPrice()*cart.getQuantity());
+            orderDetails.getOrderDetail().add(orderDetail);
+            jaxbParser.writeOrdersDetailToXml(orderDetails);
+
+        }
+
+        order.setTotalPrice(totalMoney);
+        listOrderFromXML.getOrder().add(order);
+
+
+
+
+            jaxbParser.writeOrdersToXml(listOrderFromXML);
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
+        return order.getId();
     }
 
     @Override

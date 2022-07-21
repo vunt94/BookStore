@@ -84,14 +84,30 @@ public class CartController {
         return new ResponseEntity<Object>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/checkout")
-    public String checkOut() {
-        List<Carts.Cart> list = new ArrayList<>();
-        list = (List<Carts.Cart>) session.getAttribute("listCart");
+    @PostMapping("/addToCart")
+    public String addToCart(@RequestParam("pid") String productId,
+                            @RequestParam("pquantity") String quan) {
+        short aid = Short.parseShort(session.getAttribute("accId").toString());
+        short quantity = Short.parseShort(quan);
+        short pid = Short.parseShort(productId);
+        Products.Product product = productService.getProductByID((int) pid);
+        if (cartService.isProductInCart(aid, pid) == false) {
+            cartService.addProductToCart(product, aid, quantity);
+        }
+        else {
+            cartService.updateQuantity(aid, pid, quantity);
+        }
+        return "redirect:/";
+    }
 
-
-        System.out.println(list.get(0).getQuantity());
-        return "index";
+    @PostMapping("/deleteProductInCart")
+    public ResponseEntity<Object> deleteProductInCart(@RequestParam("pid") String productId) {
+        short aid = Short.parseShort(session.getAttribute("accId").toString());
+        short pid = Short.parseShort(productId);
+        cartService.deleteProductInCart(aid, pid);
+        List<Carts.Cart> listCart = cartService.getCartByAccId(aid);
+        ServiceRespone<List<Carts.Cart>> response = new ServiceRespone<>("success", listCart);
+        return new ResponseEntity<Object>(response, HttpStatus.OK);
     }
 
 }

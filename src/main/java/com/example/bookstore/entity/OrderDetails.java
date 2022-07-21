@@ -118,7 +118,7 @@ public class OrderDetails {
     public static class OrderDetail {
 
         @XmlSchemaType(name = "unsignedByte")
-        protected short orderID;
+        protected int orderID;
         @XmlSchemaType(name = "unsignedByte")
         protected short productID;
         @XmlSchemaType(name = "unsignedShort")
@@ -127,13 +127,13 @@ public class OrderDetails {
         protected short quantity;
         @XmlAttribute(name = "ID", required = true)
         @XmlSchemaType(name = "unsignedByte")
-        protected short id;
+        protected int id;
 
         /**
          * Gets the value of the orderID property.
          * 
          */
-        public short getOrderID() {
+        public int getOrderID() {
             return orderID;
         }
 
@@ -141,7 +141,7 @@ public class OrderDetails {
          * Sets the value of the orderID property.
          * 
          */
-        public void setOrderID(short value) {
+        public void setOrderID(int value) {
             this.orderID = value;
         }
 
@@ -197,7 +197,7 @@ public class OrderDetails {
          * Gets the value of the id property.
          * 
          */
-        public short getID() {
+        public int getID() {
             return id;
         }
 
@@ -205,7 +205,7 @@ public class OrderDetails {
          * Sets the value of the id property.
          * 
          */
-        public void setID(short value) {
+        public void setID(int value) {
             this.id = value;
         }
 

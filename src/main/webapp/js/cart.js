@@ -82,3 +82,113 @@ function ajaxUpdateCart(listId, listQuantity) {
         }
     });
 }
+
+// $("#addToCart").click(function(event) {
+//     var id = $("#addToCart").attr("name");
+//     event.preventDefault();
+//     $.ajax({
+//         type : "POST",
+//         url : "addToCart",
+//         data : {'id' : id},
+//         success : function(result) {
+//
+//         },
+//         error : function(e) {
+//             alert("Error!")
+//             console.log("ERROR: ", e);
+//         }
+//     });
+// });
+
+$('#up').click(function (){
+    var numProduct = Number($('.quantity').val());
+    $('.quantity').val(numProduct + 1);
+    $('.quantity').attr("name", numProduct + 1);
+});
+
+$('#down').click(function (){
+    var numProduct = Number($('.quantity').val());
+    if (numProduct > 1) $('.quantity').val(numProduct - 1);
+    $('.quantity').attr("name", numProduct - 1);
+});
+
+function addToCart(event, id) {
+    event.preventDefault();
+    var quantity = $('.quantity').attr("name");
+    $.ajax({
+        type : "POST",
+        url : "addToCart",
+        data : {'pid' : id, 'pquantity' : quantity},
+        success : function(result) {
+
+        },
+        error : function(e) {
+            alert("Error!")
+            console.log("ERROR: ", e);
+        }
+    });
+}
+
+function deleteProductInCart(id) {
+    event.preventDefault();
+    $.ajax({
+        type : "POST",
+        url : "deleteProductInCart",
+        data : {'pid' : id},
+        success : function(result) {
+            var totalMoney = 0;
+            var price = 0;
+            var quantity = 0;
+            $('.table-shopping-cart').contents().remove();
+            $(".table-shopping-cart").append(`<tr class="table_head">
+                                <th class="column-1">Product</th>
+                                <th class="column-2"></th>
+                                <th class="column-3">Price</th>
+                                <th class="column-4">Quantity</th>
+                                <th class="column-5">Total</th>
+                            </tr>`);
+            $.each(result.data,
+                function (i, cart) {
+                    $(".table-shopping-cart").append(`
+                        <tr class="table_row">
+
+                            <td class="column-1">
+                                <div class="how-itemcart1">
+                                    <img src="images/book/${cart.image}" alt="IMG">
+                                </div>
+                            </td>
+                            <td class="column-2">${cart.name}</td>
+                            <td class="column-3">$${cart.price}</td>
+                            <td class="column-4">
+                                <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                                    <div onclick="updatePrice(${cart.productId}, ${cart.price}, 'down')" class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                        <i class="fs-16 zmdi zmdi-minus"></i>
+                                    </div>
+    
+                                    <input id="${cart.productId}" class="mtext-104 cl3 txt-center num-product" type="number" name="${cart.quantity}" value="${cart.quantity}">
+    
+                                    <div onclick="updatePrice(${cart.productId}, ${cart.price}, 'up')" class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                        <i class="fs-16 zmdi zmdi-plus"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td
+                                  id="totalPrice-${cart.productId}"  class="column-5">$${cart.price * cart.quantity}
+                            </td>
+                        </tr>`);
+
+
+                    listCart = JSON.parse(JSON.stringify(result.data[i]));
+                    price = listCart.price;
+                    quantity = listCart.quantity;
+                    totalMoney += price * quantity;
+                });
+            console.log(totalMoney);
+            $('#totalMoney').html("$" + totalMoney);
+        },
+        error : function(e) {
+            alert("Error!")
+            console.log("ERROR: ", e);
+        }
+    });
+}

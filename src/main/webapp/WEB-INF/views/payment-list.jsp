@@ -80,19 +80,10 @@
                                     <td class="column-3">${shipmentsByIdOrder.shippingAddress}</td>
                                     <td class="column-4">${ordersByUser.orderDate}</td>
                                     <td class="column-5">
-<%--                                        <a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" href="/payment-detail?id=2" style="background-color: green">--%>
-<%--                                            View order detail--%>
-<%--                                        </a>--%>
-                                        <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
-                                                type="submit"
-                                                formaction="/payment-add"
-                                                formmethod="post">
+                                        <a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" href="/payment-detail?id=${ordersByUser.getId()}" style="background-color: green">
                                             View order detail
-                                        </button>
+                                        </a>
                                     </td>
-<%--                                        <div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">--%>
-<%--                                        View order detail--%>
-<%--                                    </div>--%>
                                 </tr>
                             </c:forEach>
                         </table>

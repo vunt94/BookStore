@@ -96,7 +96,7 @@ public class JAXBParser {
         try {
             JAXBContext context = JAXBContext.newInstance(Favorites.class);
             Marshaller marshaller = context.createMarshaller();
-            marshaller.marshal(favorites, new File(constant.SHIPMENT_XML_PATH));
+            marshaller.marshal(favorites, new File(constant.FavoriteXMLPath));
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
@@ -169,6 +169,16 @@ public class JAXBParser {
             Carts carts =
                     (Carts) unmarshaller.unmarshal(new File(constant.CartXMLPath));
             return carts;
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void writeCartToXML(Carts carts) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Carts.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.marshal(carts, new File(constant.CartXMLPath));
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

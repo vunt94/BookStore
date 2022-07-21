@@ -25,6 +25,9 @@ public class ProfileController {
     @GetMapping("profile")
     public String doGet() {
         Accounts.Account acc = (Accounts.Account) session.getAttribute("user");
+        if(acc == null){
+            return "signin";
+        }
         String userName = acc.getUserName();
         String phone = acc.getPhoneNumber();
         request.setAttribute("userName", userName);

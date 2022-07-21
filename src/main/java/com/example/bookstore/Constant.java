@@ -13,4 +13,8 @@ public class Constant {
     public final String SHIPMENT_XML_PATH= "src/main/resources/xml/ShipmentTest.xml";
 
     public final String ORDER_XML_PATH= "src/main/resources/xml/Order.xml";
+
+    public final String OrderDetailXMLPath = "src/main/resources/xml/OrderDetail.xml";
+
+    public final String ShipmentXMLPath = "src/main/resources/xml/Shipment.xml";
 }

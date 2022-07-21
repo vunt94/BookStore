@@ -1,10 +1,12 @@
 package com.example.bookstore.service.impl;
 
+import com.example.bookstore.entity.Orders;
 import com.example.bookstore.entity.Shipments;
 import com.example.bookstore.service.ShipmentService;
 import com.example.bookstore.ulti.PaymentJAXBParser;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.JAXBException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +41,17 @@ public class ShipmentServiceImpl implements ShipmentService {
     }
 
     @Override
-    public Shipments updateShipment(Shipments.Shipment shipments) {
-        return null;
+    public void updateShipment( String address, Orders ordersByUserId) {
+        Shipments listShipmentFromXML = jaxbParser.getListShipmentFromXML();
+        Shipments.Shipment shipment = new Shipments.Shipment();
+        shipment.setOrderId(Short.parseShort(ordersByUserId.getOrder().get(0).getId()+""));
+        shipment.setID(Short.parseShort((listShipmentFromXML.getShipment().size()+1)+""));
+        shipment.setShippingAddress(address);
+        listShipmentFromXML.getShipment().add(shipment);
+        try {
+            jaxbParser.writeShipmentToXml(listShipmentFromXML);
+        }catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
