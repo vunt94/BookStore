@@ -23,7 +23,7 @@ public class SignUpController {
     }
 
     @PostMapping("signup")
-    public String doPost(HttpServletRequest request, HttpServletResponse response) {
+    public String doPost(HttpServletRequest request) {
         String userName = request.getParameter("userName");
         String phoneNumber = request.getParameter("phoneNumber");
         String password = request.getParameter("password");
@@ -47,7 +47,7 @@ public class SignUpController {
             //add to session
             HttpSession session = request.getSession();
             session.setAttribute("user", newAccount);
-            return "redirect:/home";
+            return "redirect:/";
         }
     }
 

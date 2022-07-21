@@ -52,7 +52,7 @@
                     <input
                             class="input100"
                             type="password"
-                            name="pass"
+                            name="password"
                             placeholder="Password"
                             value=""
                     />
@@ -74,8 +74,6 @@
                 <div class="text-center p-t-46 p-b-20">
                     <a href="signin" class="txt1"> Already have an account ? </a>
                 </div>
-
-
             </form>
 
             <div

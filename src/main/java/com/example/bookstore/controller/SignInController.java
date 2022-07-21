@@ -48,7 +48,7 @@ public class SignInController {
         String password = "";
         if (cookie != null) {
             for (Cookie c : cookie) {
-                if (c.getName().equals("phone")) {
+                if (c.getName().equals("phoneNumber")) {
                     phone = c.getValue();
                 }
                 if (c.getName().equals("password")) {
@@ -81,7 +81,7 @@ public class SignInController {
 
     @PostMapping("signin")
     public String doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String phoneNumber = request.getParameter(("phone"));
+        String phoneNumber = request.getParameter(("phoneNumber"));
         String password = request.getParameter(("password"));
         String rememberMe = request.getParameter(("rememberMe"));
         Accounts.Account acc = loginService.getAccount(phoneNumber, password);
@@ -89,7 +89,7 @@ public class SignInController {
         boolean isLoginSuccess = loginService.login(phoneNumber, password);
         if (isLoginSuccess) {
             if (rememberMe != null) {
-                Cookie cPhone = new Cookie("phone", phoneNumber);
+                Cookie cPhone = new Cookie("phoneNumber", phoneNumber);
                 Cookie cPass = new Cookie("password", password);
 
                 //set how long cookie will exist(second)
